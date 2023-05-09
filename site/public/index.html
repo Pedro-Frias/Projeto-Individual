@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="assets/dog.png">
+    <script defer src="js/script.js"></script>
+    <title>Loyal Loki</title>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo-area-nav">
+            <a href="index.html"><img src="assets/Logo-sem-fundo.png" alt=""></a>
+        </div>
+        <div class="inner-area-nav">
+            <ul class="list-nav">
+                <li><a class="link-nav" href="index.html"><span class="icon-nav"></span> Home <span class="icon-nav2"></span></a>
+                </li>
+                <li><a class="link-nav" href="#home-calculadora"> <span class="icon-nav"> </span>Simule <span
+                            class="icon-nav3"></span></a></li>
+                <li><a class="link-nav" href="#"> <span class="icon-nav"> </span>Adote <span
+                            class="icon-nav2"></span></a></li>
+                <li><a class="link-nav" href="#"> <span class="icon-nav"></span>Sobre mim <span
+                            class="icon-nav4"></span></a></li>
+                <li><a class="link-nav" href="login.html"> <span class="icon-nav"></span>Login<span class="icon-nav5"></span></a>
+                </li>
+                <li><a class="link-nav" href="cadastro.html"> <span class="icon-nav"></span>Cadastro <span
+                            class="icon-nav6"></span></a></li>
+            </ul>
+            </nav>
+
+    </header>
+    <main>
+        <div class="slider">
+            <div class="slides">
+
+                <!-- Radio Buttons Slides -->
+                <input type="radio" name="radio-button" id="radio1">
+                <input type="radio" name="radio-button" id="radio2">
+                <input type="radio" name="radio-button" id="radio3">
+
+                <!-- Slides da Home-->
+                <div class="slide first">
+
+                    <img class="img-home"
+                        src="assets/cachorro-basenji-inteligente-e-amigavel-dando-a-pata-de-perto-isolado-no-branco (6).jpg"
+                        alt="">
+                    <span class="title-slide1"><b>Cachorro</b>, o melhor amigo do homem</span>
+                    <span class="desc-slide1">Como algo que não fala,conhece tão bem nós seres humanos?</span>
+                    <a class="button-home-slide1" href="">Saiba mais</a>
+
+                </div>
+                <div class="slide">
+                    <img class="img-home" src="assets/cao-bonito-com-fones-de-ouvido.jpg" alt="">
+                    <span class="title-slide2">Cachorro companheiro</span>
+                    <span class="desc-slide2">Aquele que topa todas ideias sem ao menos pensar</span>
+                    <a class="button-home-slide2 btnHome" href="">Saiba mais</a>
+                </div>
+                <div class="slide">
+
+                    <img class="img-home3" src="assets/retrato-de-cachorro-adoravel-bulldog-branco.jpg" alt="">
+                    <span class="title-slide3">Mesmo estando longe</span>
+                    <span class="desc-slide3">Eles sempre dão um jeito de ficar perto de você</span>
+                    <a class="button-home-slide3" href="">Saiba mais</a>
+                </div>
+                <!-- Navegação Automatica slides -->
+                <div class="navigation-auto">
+                    <div class="auto-btn1"></div>
+                    <div class="auto-btn2"></div>
+                    <div class="auto-btn3"></div>
+                </div>
+
+                <!-- Navageação manual slides -->
+
+                <div class="navigation-manual">
+                    <label for="radio1" class="manual-btn"></label>
+                    <label for="radio2" class="manual-btn"></label>
+                    <label for="radio3" class="manual-btn"></label>
+                </div>
+            </div>
+        </div>
+
+        <!-- ÁREA SAIBA MAIS
+            EM PLANEJAMENTO
+        -->
+        <!--         <div id="typing-animation"></div> -->
+        <div class="saiba-mais">
+            <img class="imagem-saiba-mais" src="assets/pug.jpg" alt="">
+
+            <div class="saiba-mais-texto">
+                <span class="title-saiba-mais">Por que um cachorro?</span>
+                <p class="textos">O cachorro é considerado o amigo mais velho do homem e que segundo estudos, esta parceria já se ultrapassou por <b>30.000 anos!</b> Os cães são conhecidos por serem companheiros leais e afetuosos. Eles estão sempre presentes, prontos para oferecer amor, apoio emocional e companhia. A presença de um cão pode reduzir o estresse, diminuir a pressão arterial, melhorar o sistema imunológico e até mesmo ajudar no tratamento de condições como ansiedade e depressão.Além disso, Ter um cachorro pode ensinar importantes valores, como responsabilidade, paciência, empatia e respeito pelos seres vivos.
+                </p>
+                <p class="frase-efeito">
+                    “O único amigo absoluto e altruísta que o homem pode ter neste mundo egoísta - aquele que nunca se
+                    mostra ingrato ou traiçoeiro - é seu cachorro.
+                </p>
+                <p>George Graham</p>
+            </div>
+        </div>
+
+        <!-- ÁREA CALCULADORA IDADE -->
+
+        <div class="home-calculadora" id="home-calculadora">
+            <img class="imagem-calculadora" src="assets/cachorro-chapeu.png" alt="">
+
+
+            <div class="calculadora">
+                <span class="title-calculadora">Quanto anos tem seu cachorro?</span>
+                <span class="descricao-calculadora">Você sabe quantos anos seu cachorro tem se fosse humano?<b>Venha
+                        descobrir!</b></span>
+                <span class="descricao-input-idade">Insira a idade do seu cachorro:</span>
+                <input class="input-idade" type="number" id="input_idade_cachorro">
+                <span class="descricao-input-porte">Qual o porte do seu cachorro?</span>
+                <div class="portes-calculadora">
+                    <h3>Selecione o porte do cachorro</h3>
+                    <input class="radio-porte" type="radio" name="porte" id="porte-pequeno">
+                    <label for="porte-pequeno">Pequeno ou Mini</label>
+                    <input class="radio-porte" type="radio" name="porte" id="porte-medio">
+                    <label for="porte-medio">Médio</label>
+                    <input class="radio-porte" type="radio" name="porte" id="porte-grande">
+                    <label for="porte-grande">Grande ou Gigante</label>
+                </div>
+                <button class="button-calculadora" onclick="verIdade()">Ver idade</button>
+                <div class="resultado-idade" id="div_resultado"></div>
+            </div>
+        </div>
+
+        <!-- ÁREA CARDS FALANDO SOBRE OS PORTES DOS CACHORROS -->
+
+        <div class="home-cards">
+            <!--             <img class="biscoito-cards" src="assets/biscoito-cachorro.jpg" alt=""> -->
+            <div class="title-cards">
+                <img class="icon-cards" src="assets/pawprint.png" alt="">
+                <span class="title-cards-porte">Quais são os tipos de porte?</span>
+                <img class="icon-cards" src="assets/pawprint.png" alt="">
+            </div>
+            <div class="card-porte">
+                <div class="text-card">
+                    <h3 class="title-porte">Porte Mini</h3>
+                    <span class="descricao-card-porte">São cachorros fofos e amigáveis com seus donos que possuem altura
+                        máxima de 30cm e peso máximo de 4kg</span>
+                    <span class="raca-card"><b>Raças:</b>o Micro Yorkshire Terrier,Spitz Alemão Anão,chihuahua,</span>
+                </div>
+                <img class="img-mini-porte" src="assets/yorkshire.gif" alt="">
+            </div>
+            <div class="card-porte">
+                <div class="text-card">
+                    <h3 class="title-porte">Porte Pequeno</h3>
+                    <span class="descricao-card-porte">São extremamento ativos e brincalhões obtendo uma altura entre
+                        30cm a 40cm e peso máximo de até 10kg</span>
+                    <span class="raca-card"><b>Raças:</b>Dachshund, Pinscher, Poodle Toy, Lhasa Apso, Shih Tzu</span>
+                </div>
+                <img class="img-pequeno-porte" src="assets/salsicha.webp" alt="">
+            </div>
+            <div class="card-porte">
+                <div class="text-card">
+                    <h3 class="title-porte">Porte Medio</h3>
+                    <span class="descricao-card-porte">São cachorros protetores e companheiros que possuem altura máxima
+                        de 50cm pesando média de 10kg a 25kg</span>
+                    <span class="raca-card"><b>Raças:</b>Beagle, Border Collie, Bulldog Francês, Cocker Spaniel</span>
+                </div>
+                <img class="img-medio-porte" src="assets/bulldog.webp" alt="">
+            </div>
+            <div class="card-porte">
+                <div class="text-card">
+                    <h3 class="title-porte">Porte Grande</h3>
+                    <span class="descricao-card-porte">Leal e calmo, estes cachorros possuem altura entre 50cm a 70cm
+                        pesando em torno de 25kg a 40kg</span>
+                    <span class="raca-card"><b>Raças:</b>Husky Siberiano ,Doberman, Golden Retriever, Labrador
+                        Retriever,</span>
+                </div>
+                <img class="img-grande-porte" src="assets/husky.gif" alt="">
+            </div>
+            <div class="card-porte">
+                <div class="text-card">
+                    <h3 class="title-porte">Porte Gigante</h3>
+                    <span class="descricao-card-porte">São cachorros gentis e que precisam de espaço, possuem altura
+                        acima de 70cm e peso mínimo de 45kg</span>
+                    <span class="raca-card"><b>Raças:</b>DogoArgentino ,Dogue Alemão, Mastiff, São Bernardo </span>
+                </div>
+                <img class="img-gigante-porte" src="assets/dogo-argentino.gif" alt="">
+            </div>
+            <!--        <img  class="biscoito-cards2" src="assets/biscoito-cachorro.jpg" alt=""> -->
+        </div>
+
+        <!-- ÁREA DICAS -->
+        <div class="home-dicas">
+
+            <h1>Dicas para os donos </h1>
+            <div class="cards-dicas">
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3>Passear com seu cachorro</h3>
+                            <img class="card1-dicas" src="assets/cao-coleira-boca.jpg" alt="Avatar">
+                        </div>
+                        <div class="flip-card-back">
+                            <p>
+                                Exponha seu cachorro a diferentes ambientes, pessoas e outros animais desde filhote.
+                                Isso ajudará a evitar problemas comportamentais no futuro e tornará seu cachorro mais
+                                confiante e sociável.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3>Higiene</h3>
+                            <img class="card2-dicas" src="assets/cachorro-higiene2.jpg" alt="Avatar" ;>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>
+                                Mantenha a higiene do seu cachorro em dia, incluindo banhos regulares, escovação dos
+                                pelos, limpeza dos ouvidos e corte das unhas. Isso ajudará a prevenir problemas de pele,
+                                infecções e desconfortos.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3>Alimentação adequada</h3>
+                            <img class="card3-dicas" src="assets/salsicha-che.jpg" alt="Avatar">
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Consulte um veterinário para garantir que a alimentação do seu cão seja balanceada e
+                                atenda às suas necessidades nutricionais específicas. Evite alimentar seu cachorro com
+                                alimentos prejudiciais à saúde, como chocolate, uvas ou cebola.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3>Muito amor e carinho</h3>
+                            <img class="card4-dicas"
+                                src="https://img.freepik.com/premium-photo/dog-holding-heart-shaped-balloon_845176-10.jpg?w=740">
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Por último, mas não menos importante, lembre-se de demonstrar amor e carinho ao seu
+                                cachorro. Eles são leais e devotados, e retribuir esse amor ajudará a fortalecer o
+                                vínculo entre vocês.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--         william.nicolau@sptech.school -->
+        <!-- https://pqina.nl/blog/upload-image-with-nodejs/ -->
+        <!-- https://s1.1zoom.me/big0/759/Dogs_White_background_Jack_Russell_terrier_Tongue_563497_1279x1024.jpg -->
+    </main>
+
+</body>
+
+</html>
+
+<!--azul: #86C5DA 
+    laranja: #FFA07A
+    marrom: #8B4513
+    verde: #BCECAC
+-->

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cadastro.css">
+    <link rel="icon" href="assets/dog.png">
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+
+    <!-- NAVBAR  -->
+    <header class="header-cadastro">
+        <div class="logo-area-nav">
+            <a href="index.html"><img src="assets/Logo-sem-fundo.png" alt=""></a>
+        </div>
+        <div class="inner-area-nav">
+            <ul class="list-nav">
+                <li><a class="link-nav" href="index.html"><span class="icon-nav"></span> Home <span class="icon-nav2"></span></a>
+                </li>
+                <li><a class="link-nav" href="index.html#home-calculadora"> <span class="icon-nav"> </span>Simule <span
+                            class="icon-nav3"></span></a></li>
+                <li><a class="link-nav" href="#"> <span class="icon-nav"> </span>Adote <span
+                            class="icon-nav2"></span></a></li>
+                <li><a class="link-nav" href="#"> <span class="icon-nav"></span>Sobre mim <span
+                            class="icon-nav4"></span></a></li>
+                <li><a class="link-nav" href="login.html"> <span class="icon-nav"></span>Login<span class="icon-nav5"></span></a>
+                </li>
+                <li><a class="link-nav" href="cadastro.html"> <span class="icon-nav"></span><b>Cadastro</b> <span
+                            class="icon-nav6"></span></a></li>
+            </ul>
+            </nav>
+    </header>
+
+<!-- ÁREA DE CADASTRO -->
+    <main>
+        <div class="container-cadastro">
+            <div class="form">
+                <div class="form-image">
+                    <img class="img-cadastro" src="assets/cachorrinho-fofo-se-passando-por-um-empresario.jpg" alt="">
+                </div>
+                <div class="form-register">
+                    <div class="title-cadastro">
+                        <img class="icon-cadastro" src="assets/dog (4).png" alt="">
+                        <h1>Cadastre-se! </h1>
+                        <img class="icon-cadastro" src="assets/dog (4).png" alt="">
+                    </div>
+                    <div class="container-input">
+                        <div class="input-cadastro">
+                            <label for="nomeCompleto" class="label-cadastro">
+                                Nome Completo:
+                            </label>
+                            <input type="text" name="nomeCompleto">
+                        </div>
+                        <div class="input-cadastro">
+                            <label for="email" class="label-cadastro">
+                                E-mail:
+                            </label>
+                            <input type="email" name="email">
+                        </div>
+                        <div class="input-cadastro">
+                            <label for="nomeCachorro" class="label-cadastro">
+                                Nome do cachorro:
+                            </label>
+                            <input type="text" name="nomeCachorro">
+                        </div>
+                        <div class="input-cadastro">
+                            <label for="nomeCachorro" class="label-cadastro" >
+                                Senha:
+                            </label>
+                            <input type="password" id="senha">
+                        </div>
+                        <div class="input-cadastro">
+                            <label for="nomeCachorro" class="label-cadastro">
+                                Confirmar senha:
+                            </label>
+                            <input type="password" id="confirmarSenha">
+                        </div>
+                    </div>
+
+                    <!-- MÉTRICA API -->
+                    <div class="porte-cadastro">
+                        <h4 class="porte-title">Qual o porte do seu cachorro?</h4>
+                        <div>
+                            <select class="select-porte" name="oi" id="">
+                                <option value="1">Porte mini</option>
+                                <option value="2">Porte pequeno</option>
+                                <option value="3">Porte médio</option>
+                                <option value="4">Porte grande</option>
+                                <option value="5">Porte gigante</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="button-register">
+                        <a class="button-register-act" href=""><span class="icon-nav-register"></span>Saiba mais<span class="icon-nav2-register"></span></a>
+                        <button class="button-mostrar-senha" onclick="mostrarSenha()">Mostrar Senha</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

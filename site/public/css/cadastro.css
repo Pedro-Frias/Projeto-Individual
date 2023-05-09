@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap');
+
+/* ÁREA CADASTRO */
+
+.container-cadastro {
+    height: 100vh;
+    display: flex;
+    width: 100%;
+    background-color: #F5F5DC;
+    justify-content: center;
+}
+
+.form {
+    width: 80%;
+    height: 75vh;
+    background-color: white;
+    padding-top: -35vh;
+    border-radius: 10px;
+    border: 1px black solid;
+    /* margin-top: 6px; */
+    position: absolute;
+    display: flex;
+    top: 20vh;
+    /* flex-direction: row;*/
+}
+
+
+.form-image {
+    border-radius: 10px;
+    height: 75vh;
+    width: 50%;
+}
+
+.form-register {
+    width: 50%;
+    /* margin-left: 99px;*/
+}
+
+.img-cadastro {
+    height: 75vh;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.title-cadastro {
+    display: flex;
+    padding: 11px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-cadastro {
+    height: 50px;
+}
+
+.container-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+}
+
+.label-cadastro {
+    font-size: 16px;
+}
+
+.input-cadastro input {
+    border: none;
+    border-bottom: 2px solid black;
+    text-align: center;
+    height: 13px;
+    outline: none;
+    font-size: 16px;
+    width: 240px;
+}
+
+.input-cadastro{
+    display: flex;
+    flex-direction: column;
+}
+
+.porte-cadastro {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    align-items: center;
+    flex-direction: column;
+}
+
+.porte-title{
+    padding: 0;
+    margin: 0;
+}
+
+.button-register {
+    display: flex;
+    justify-content: center;
+}
+
+.button-register-act {
+    margin-top: 20px;
+    width: 170px;
+    height: 50px;
+    margin-left: 114px;
+    text-align: center;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: 2px black solid;
+    text-decoration: none;
+    border-radius: 10px;
+    color: black;
+    transition: 1s;
+}
+
+.select-porte{
+    border: 1px solid #000000;
+    border-radius: 10px;
+    background-color: #F5F5DC;
+    color: black;
+    font-weight: bold;
+}
+
+.button-register-act:hover {
+    box-shadow: 5px 5px #000000;
+  }
+  
+
+.button-mostrar-senha{
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+    position: relative;
+    left: 6%;
+    bottom: 106px;
+    width: 114px;
+}
+
+.button-mostrar-senha:hover{
+    color: blue;
+}
+a .icon-nav-register,a .icon-nav2-register {
+    position: absolute;
+    display: flex;
+    top: 50%;
+    width: 24px;
+    height: 20px;
+    background: url(../assets/dog.png);
+    opacity: 0;
+}
+
+/* ÍCONE BOTAO */
+
+a .icon-nav-register{
+    transform: translate(302%, 186px);
+}
+a .icon-nav2-register{
+    transform: translate(-296%, 186px);
+}
+
+a:hover .icon-nav-register {
+    opacity: 1;
+    transition: opacity 0.75s ease-in-out;
+}
+a:hover .icon-nav2-register {
+    opacity: 1;
+    transition: opacity 0.75s ease-in-out;
+}
+
+
