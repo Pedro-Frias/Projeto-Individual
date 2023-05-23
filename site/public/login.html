@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/login.css">
     <link rel="icon" href="assets/dog.png">
     <script src="js/script.js"></script>
+    <script src="js/funcoes.js"></script>
     <title>login</title>
 </head>
 
@@ -19,17 +20,17 @@
         </div>
         <div class="inner-area-nav">
             <ul class="list-nav">
-                <li><a class="link-nav" href="index.html"><span class="icon-nav"></span> Home <span class="icon-nav2"></span></a>
+                <li><a class="link-nav-login" href="index.html"><span class="icon-nav"></span> Home <span class="icon-nav2"></span></a>
                 </li>
-                <li><a class="link-nav" href="index.html#home-calculadora"> <span class="icon-nav"> </span>Simule <span
+                <li><a class="link-nav-login" href="index.html#home-calculadora"> <span class="icon-nav"> </span>Simule <span
                             class="icon-nav3"></span></a></li>
-                <li><a class="link-nav" href="#"> <span class="icon-nav"> </span>Adote <span
+                <li><a class="link-nav-login" href="#"> <span class="icon-nav"> </span>Adote <span
                             class="icon-nav2"></span></a></li>
-                <li><a class="link-nav" href="#"> <span class="icon-nav"></span>Sobre mim <span
+                <li><a class="link-nav-login" href="#"> <span class="icon-nav"></span>Sobre mim <span
                             class="icon-nav4"></span></a></li>
-                <li><a class="link-nav" href="login.html"> <span class="icon-nav"></span><b>Login</b><span class="icon-nav5"></span></a>
+                <li><a class="link-nav-login" href="login.html"> <span class="icon-nav"></span><b>Login</b><span class="icon-nav5"></span></a>
                 </li>
-                <li><a class="link-nav" href="cadastro.html"> <span class="icon-nav"></span>Cadastro <span
+                <li><a class="link-nav-login" href="cadastro.html"> <span class="icon-nav"></span>Cadastro <span
                             class="icon-nav6"></span></a></li>
             </ul>
             </nav>
@@ -44,18 +45,97 @@
             <h2>Seja bem-vindo!</h2>
             <form class="container-login">
                 <div class="user-box">
-                    <input class="input-login" type="text">
+                    <input class="input-login" type="text" id="input_email">
                     <label class="label-login" for="">Email:</label>
                 </div>
                 <div class="user-box">
             
-                    <input class="input-login" type="password">
-                    <label class="label-login" for="">Senha:</label>
+                    <input class="input-login" type="password" id="input_senha">
+                    <label id="label1" class="label-login" for="">Senha:</label>
                 </div>
-                <a href="#">Entrar</a>
+                <a onclick="entrar()">Entrar</a>
+                <div id="div_erros_login"></div>
+                <div id="div_aguardar" class="loading-div">
+                </div>
+                <div class="alerta_erro">
+                    <div class="card_erro" id="cardErro">
+                        <span id="mensagem_erro"></span>
+                    </div>
+            </div>
             </form>
         </div>
     </main>
 </body>
 
 </html>
+
+<script>
+
+
+    function entrar() {
+        aguardar();
+
+        var email = input_email.value;
+        var senha = input_senha.value;
+
+        if (email == "" || senha == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", email);
+        console.log("FORM SENHA: ", senha);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: email,
+                senhaServer: senha
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
+                    window.location = "./dashboard/dashboard.html";
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+</script>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/5830285a36.js" crossorigin="anonymous"></script>
+    <script src="../js/funcoes.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="../css/dashboard-inicial.css">
+    <link rel="stylesheet" href="../css/to-do.css">
+    <link rel="icon" href="assets/dog.png">
+    <script src="../js/funcoes.js"></script>
+    <script src=""></script>
+    <title>Editar to do</title>
+</head>
+
+<body >
+
+    <nav class="nav2">
+        <ul>
+            <li>
+                <a href="" class="logo">
+                    <img src="../assets/logo-sem-escrita.png" alt="">
+                    <span class="nav-item">loyal Loki</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="fa-solid fa-users"></i>
+                    <span class="nav-item">Comunidadade</span>
+                </a>
+            </li>
+            <li>
+                <a href="to-do.html">
+                    <i class="fa-solid fa-book"></i>
+                    <span class="nav-item">Book</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span class="nav-item">Métricas</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="fa-solid fa-paw"></i>
+                    <span class="nav-item">Adote</span>
+                </a>
+            </li>
+            <li>
+                <a href="" class="logout" onclick="limparSessao()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span class="nav-item">Sair</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="edit-to-do">
+
+        <div class="container-to-do">
+            <span class="title-edit-to-do">Edição tarefa </span>
+            <div class="div-form">
+                <form>
+                    <label>
+                        <h2>Descreva o que fez com seu cachorro:</h2>
+                        <textarea class="description-edit-to-do" name="descricao" id="textarea_descricao" maxlength="1000"
+                            rows="5"></textarea>
+                    </label>
+                    <button class="button" onclick="editar()">Enviar</button>
+                </form>
+            </div>
+
+</body>
+
+
+<script onload="validarSessao()">
+
+    function alertEditar(){
+        Swal.fire(
+                    'Tarefa editada!',
+                    'Parabéns!',
+                    'success'
+                )
+    }
+
+    function editar() {
+        fetch(`/tarefa/editar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                descricao: textarea_descricao.value
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                console.log("Testando se direciona para to-do.html")
+               alertEditar()
+               setTimeout(() => {
+                    window.location = "../dashboard/to-do.html";
+                }, "2000")
+            } 
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+</script>

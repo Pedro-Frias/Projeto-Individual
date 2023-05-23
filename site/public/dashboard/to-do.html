@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/5830285a36.js" crossorigin="anonymous"></script>
+    <script src="../js/funcoes.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/funcoes.js"></script>
+    <link rel="stylesheet" href="../css/dashboard-inicial.css">
+    <link rel="stylesheet" href="../css/to-do.css">
+    <link rel="icon" href="assets/dog.png">
+    <title>To do</title>
+</head>
+
+<body onload="atualizarFeed()">
+
+    <nav class="nav2">
+        <ul>
+            <li>
+                <a href="" class="logo">
+                    <img src="../assets/logo-sem-escrita.png" alt="">
+                    <span class="nav-item">loyal Loki</span>
+                </a>
+            </li>
+            <li>
+                <a href="dashboard.html">
+                    <i class="fa-solid fa-users"></i>
+                    <span class="nav-item">Comunidade</span>
+                </a>
+            </li>
+            <li>
+                <a href="to-do.html">
+                    <i class="fa-solid fa-book"></i>
+                    <span class="nav-item">book</span>
+                </a>
+            </li>
+            <li>
+                <a href="metricas.html">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span class="nav-item">Métricas</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="fa-solid fa-paw"></i>
+                    <span class="nav-item">Adote</span>
+                </a>
+            </li>
+            <li>
+                <a href="" class="logout" onclick="limparSessao()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span class="nav-item">Sair</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="to-do">
+
+        <div class="container-to-do">
+            <h1>Tarefas feitas com meu cachorro </h1>
+            <div class="div-form">
+                <form id="form_postagem" method="post" onsubmit="return publicar()">
+                    <label>
+                        Título:
+                        <input class="title-to-do" name="titulo" id="titulo" maxlength="100" type="text">
+                        <br>
+                        <span>Insira a data feita:</span>
+                        <input id="data" class="date-to-do" type="date" maxlength="9">
+                    </label>
+                    <label for="">
+                        <span>Atividade feita:</span>
+                        <select name="" class="select-" id="atividade">
+                            <option value="1">Higiene</option>
+                            <option value="2">Lazer</option>
+                            <option value="3">Adestramento</option>
+                            <option value="4">Vacinas</option>
+                            <option value="5">Veterinário</option>
+                            <option value="6">Alimentação</option>
+                        </select>
+                    </label>
+                    <br>
+                    <label>
+                        Descreva o que fez com seu cachorro:
+                        <textarea class="description-to-do" name="descricao" id="textarea_descricao" maxlength="1000"
+                            rows="5"></textarea>
+                    </label>
+                    <button class="button">Enviar</button>
+                </form>
+            </div>
+            <h1>Mural de Tarefas</h1>
+            <div class="div-results">
+                <div id="feed_container" class="feed-container">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
+
+
+<script>
+    var idUsuario = sessionStorage.ID_USUARIO;
+
+    function alertPublicar() {
+        Swal.fire(
+            'Tarefa registrada!',
+            'Muito obrigado!',
+            'success'
+        )
+    }
+
+    function alertDeletar() {
+        Swal.fire(
+            'Tarefa apagada!',
+            'Muito obrigado!',
+            'success'
+        )
+    }
+
+    function limparFormulario() {
+        document.getElementById("form_postagem").reset();
+    }
+
+
+    function publicar() {
+        /*      var idUsuario = sessionStorage.getItem('ID_USUARIO'); */
+        var corpo = {
+            titulo: form_postagem.titulo.value,
+            data: form_postagem.data.value,
+            atividade: form_postagem.atividade.value,
+            descricao: form_postagem.descricao.value,
+        }
+
+        fetch(`/tarefa/publicar/${idUsuario}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(corpo)
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                alertPublicar() 
+                setTimeout(() => {
+                    window.location = "../dashboard/to-do.html";
+                }, "2000")
+
+                limparFormulario();
+                /*   finalizarAguardar(); */
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            /*         finalizarAguardar(); */
+        });
+
+        return false;
+
+    }
+
+
+    function atualizarFeed() {
+        //aguardar();
+        fetch(`/tarefa/listar/${idUsuario}`).then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var feed = document.getElementById("feed_container");
+                    var mensagem = document.createElement("span");
+                    mensagem.innerHTML = ""
+                    feed.appendChild(mensagem);
+                    throw "";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("feed_container");
+                    feed.innerHTML = "";
+                    for (let i = 0; i < resposta.length; i++) {
+                        var publicacao = resposta[i];
+                        // criando e manipulando elementos do HTML via JavaScript
+                        var divButtons = document.createElement("div");
+                        var btnEditar = document.createElement("div");
+                        var btnDeletar = document.createElement("div");
+                        var divPublicacao = document.createElement("div");
+                        var spanTitulo = document.createElement("span");
+                        var spanAtividade = document.createElement("span");
+                        var spanData = document.createElement("span");
+                        var spanDescricao = document.createElement("span");
+
+                        btnEditar.innerHTML = "<img class='img-button'  src='../assets/edit.png'>"
+
+                        btnDeletar.innerHTML = "<img class='img-button'  src='../assets/delete.png'>"
+                        spanTitulo.innerHTML = "<span class= 'publicacao-label-titulo'>Título: </span> <span class='publicacao-titulo'>" + publicacao.titulo + "</span>"
+                        spanAtividade.innerHTML = "<span class= 'publicacao-label-titulo'>Tipo:</span> <span class='publicacao-titulo'>" + publicacao.nome + "</span>"
+                        spanData.innerHTML = "<span class= 'publicacao-label-titulo'>Data: </span> <span class='publicacao-titulo'>" + publicacao.dtAtividade + "</span>"
+                        spanDescricao.innerHTML = "<span class= 'publicacao-label-titulo'>Descricao: <span class='publicacao-titulo'>" + publicacao.descricao + "</span>"
+
+
+                        divButtons.className = "div-buttons"
+                        divPublicacao.className = "publicacao";
+
+                        btnEditar.className = "publicacao-btn-editar"
+                        btnEditar.id = "btnEditar" + publicacao.idTarefa;
+                        btnEditar.setAttribute("onclick", `editar(${publicacao.idTarefa})`);
+
+                        btnDeletar.className = "publicacao-btn-deletar"
+                        btnDeletar.id = "btnDeletar" + publicacao.idTarefa;
+                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idTarefa})`);
+
+                        divButtons.appendChild(btnEditar);
+                        divButtons.appendChild(btnDeletar);
+                        divPublicacao.appendChild(divButtons);
+                        divPublicacao.appendChild(spanTitulo);
+                        divPublicacao.appendChild(spanAtividade);
+                        divPublicacao.appendChild(spanData);
+                        divPublicacao.appendChild(spanDescricao);
+                        feed.appendChild(divPublicacao);
+                    }
+
+                    /* finalizarAguardar(); */
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            /*            finalizarAguardar(); */
+        });
+    }
+
+
+    function editar(idTarefa) {
+        sessionStorage.ID_POSTAGEM_EDITANDO = idTarefa;
+        console.log("cliquei em editar - " + idTarefa);
+/*         window.alert("Você será redirecionado à página de edição do aviso de id número: " + idTarefa); */
+        window.location = "/dashboard/edicao-to-do.html"
+
+    }
+
+    function deletar(idTarefa) {
+        console.log("Criar função de apagar post escolhido - ID" + idTarefa);
+        fetch(`/tarefa/deletar/${idTarefa}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                alertDeletar()
+                setTimeout(() => {
+                    window.location = "/dashboard/to-do.html"
+                }, "2000")
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            } ''
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+
+</script>

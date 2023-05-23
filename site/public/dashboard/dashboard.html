@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/5830285a36.js" crossorigin="anonymous"></script>
+    <script src="../js/funcoes.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="../css/dashboard-inicial.css">
+    <link rel="icon" href="assets/dog.png">
+    <title>dashboard</title>
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="../index.html" class="logo">
+                    <img src="../assets/logo-sem-escrita.png" alt="">
+                    <span class="nav-item">loyal Loki</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="fa-solid fa-users"></i>
+                    <span class="nav-item">Comunidadade</span>
+                </a>
+            </li>
+            <li>
+                <a href="to-do.html">
+                    <i class="fa-solid fa-book"></i>
+                    <span class="nav-item">book</span>
+                </a>
+            </li>
+            <li>
+                <a href="metricas.html">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span class="nav-item">Métricas</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="fa-solid fa-paw"></i>
+                    <span class="nav-item">Adote</span>
+                </a>
+            </li>
+            <li>
+                <a href="" class="logout" onclick="limparSessao()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span class="nav-item">Sair</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="text-dashboard">
+            <span class="title-dashboard">A comunidade LoyalLoki está cada vez mais crescendo!</span>
+            <span class="subtitle-dashboard">Veja quantos cachorros de cada porte participam da nossa comunidade!</span>
+        </div>
+        <div class="canva-background">
+            <ul class="slides-list">
+                <li class="slide">
+                    <canvas id="myChart"></canvas>
+                </li>
+            </ul>
+        </div>
+        <!--   class="slide-show select-disable" -->
+    </div>
+    <div>
+        <img style="height: 270px; margin-left: 6%; width: 100%;" src="../assets/cachorro-nadando.png" alt="">
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    /*     b_usuario.innerHTML = sessionStorage.NOME_USUARIO   */
+
+    let proximaAtualizacao;
+
+    window.onload = obterDadosGrafico(1);
+
+
+    function obterDadosGrafico(porte) {
+
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/medidas/ultimas/:`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    plotarGrafico(resposta);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+    // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+    // A função *plotarGrafico* também invoca a função *atualizarGrafico*
+    function plotarGrafico(resposta) {
+        console.log('iniciando plotagem do gráfico...');
+
+        var dados = {
+            labels: [],
+            datasets: [
+                {
+                    label: '',
+                    backgroundColor: 'white',
+                    data: []
+                },
+                {
+                    yAxisID: 'portes-cachorro',
+                    label: 'Portes dos cachorros da comunidade',
+                    backgroundColor: ["#00b300", "#33cc33", "#66d966", "#99e699", "#ccffcc"],
+                    fill: true,
+                    data: []
+                }
+            ]
+        };
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            dados.labels.push(registro.porte);
+            dados.datasets[0].data.push(registro.porte);
+            dados.datasets[1].data.push(registro.voto);
+            console.log(registro.voto)
+
+
+        }
+
+        console.log(JSON.stringify(dados));
+
+        var ctx = myChart.getContext('2d');
+        window.myChart = Chart.Bar(ctx, {
+            data: dados,
+            options: {
+                responsive: true,
+                animation: { duration: 900 },
+                hoverMode: 'index',
+                stacked: false,
+                title: {
+                    display: true,
+                    text: 'Os portes que mais tem na comunidade!'
+                },
+
+                scales: {
+                    yAxes: [{
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        id: 'portes-cachorro',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 14,
+                            min: 0
+                        }
+                    }, {
+                        display: false,
+                    }],
+                }
+            }
+        });
+
+    }
+
+
+
+</script>

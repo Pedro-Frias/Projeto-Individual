@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="css/cadastro.css">
     <link rel="icon" href="assets/dog.png">
     <script src="js/script.js"></script>
+    <script src="js/funcoes.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js%22%3E"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js%22%3E"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -21,7 +26,8 @@
         </div>
         <div class="inner-area-nav">
             <ul class="list-nav">
-                <li><a class="link-nav" href="index.html"><span class="icon-nav"></span> Home <span class="icon-nav2"></span></a>
+                <li><a class="link-nav" href="index.html"><span class="icon-nav"></span> Home <span
+                            class="icon-nav2"></span></a>
                 </li>
                 <li><a class="link-nav" href="index.html#home-calculadora"> <span class="icon-nav"> </span>Simule <span
                             class="icon-nav3"></span></a></li>
@@ -29,7 +35,8 @@
                             class="icon-nav2"></span></a></li>
                 <li><a class="link-nav" href="#"> <span class="icon-nav"></span>Sobre mim <span
                             class="icon-nav4"></span></a></li>
-                <li><a class="link-nav" href="login.html"> <span class="icon-nav"></span>Login<span class="icon-nav5"></span></a>
+                <li><a class="link-nav" href="login.html"> <span class="icon-nav"></span>Login<span
+                            class="icon-nav5"></span></a>
                 </li>
                 <li><a class="link-nav" href="cadastro.html"> <span class="icon-nav"></span><b>Cadastro</b> <span
                             class="icon-nav6"></span></a></li>
@@ -37,7 +44,7 @@
             </nav>
     </header>
 
-<!-- ÁREA DE CADASTRO -->
+    <!-- ÁREA DE CADASTRO -->
     <main>
         <div class="container-cadastro">
             <div class="form">
@@ -52,34 +59,34 @@
                     </div>
                     <div class="container-input">
                         <div class="input-cadastro">
+                            <input type="text" name="nomeCompleto" id="input_nome">
                             <label for="nomeCompleto" class="label-cadastro">
                                 Nome Completo:
                             </label>
-                            <input type="text" name="nomeCompleto">
                         </div>
                         <div class="input-cadastro">
+                            <input type="email" name="email" id="input_email">
                             <label for="email" class="label-cadastro">
                                 E-mail:
                             </label>
-                            <input type="email" name="email">
                         </div>
                         <div class="input-cadastro">
+                            <input type="text" name="nomeCachorro" id="input_nome_cachorro">
                             <label for="nomeCachorro" class="label-cadastro">
                                 Nome do cachorro:
                             </label>
-                            <input type="text" name="nomeCachorro">
                         </div>
                         <div class="input-cadastro">
-                            <label for="nomeCachorro" class="label-cadastro" >
+                            <input type="password" id="input_senha">
+                            <label for="nomeCachorro" class="label-cadastro">
                                 Senha:
                             </label>
-                            <input type="password" id="senha">
                         </div>
                         <div class="input-cadastro">
+                            <input type="password" id="input_confirmar_senha">
                             <label for="nomeCachorro" class="label-cadastro">
                                 Confirmar senha:
                             </label>
-                            <input type="password" id="confirmarSenha">
                         </div>
                     </div>
 
@@ -87,7 +94,7 @@
                     <div class="porte-cadastro">
                         <h4 class="porte-title">Qual o porte do seu cachorro?</h4>
                         <div>
-                            <select class="select-porte" name="oi" id="">
+                            <select class="select-porte" name="porte" id="porte_cachorro">
                                 <option value="1">Porte mini</option>
                                 <option value="2">Porte pequeno</option>
                                 <option value="3">Porte médio</option>
@@ -97,13 +104,126 @@
                         </div>
                     </div>
                     <div class="button-register">
-                        <a class="button-register-act" href=""><span class="icon-nav-register"></span>Saiba mais<span class="icon-nav2-register"></span></a>
+                        <a class="button-register-act" onclick="cadastrar()"><span
+                                class="icon-nav-register"></span>Cadastrar<span class="icon-nav2-register"></span></a>
                         <button class="button-mostrar-senha" onclick="mostrarSenha()">Mostrar Senha</button>
+                    </div>
+                    <div id="div_erros_login"></div>
+                    <div id="div_aguardar" class="loading-div">
+                    </div>
+                    <div class="alerta_erro">
+                        <div class="card_erro" id="cardErro">
+                            <span id="mensagem_erro"></span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </main>
 </body>
 
 </html>
+
+<script>
+    function cadastrar() {
+        aguardar();
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var porte = porte_cachorro.value
+        var nome = input_nome.value;
+        var email = input_email.value;
+        var nomeCachorro = input_nome_cachorro.value;
+        var senha = input_senha.value;
+        var confirmacaoSenha = input_confirmar_senha.value;
+
+        if (nome == "" || email == "" || nomeCachorro == "" || senha == "" || confirmacaoSenha == "") {
+            mensagem_erro.innerHTML = "Insira dados válidos para todos inputs";
+
+            finalizarAguardar();
+            return false;
+        }else if(email.search("@")==-1){
+            Swal.fire(
+                    'Erro!',
+                    'Insira um email válido',
+                    'error'
+                )
+                finalizarAguardar();
+                return false;
+        }else if(senha != confirmacaoSenha){
+            Swal.fire(
+                    'Erro!',
+                    'Insira senhas iguais',
+                    'error'
+                )
+                finalizarAguardar();
+                return false;
+        }else if(porte == 0){
+            Swal.fire(
+                    'Erro!',
+                    'Insira algum porte',
+                    'error'
+                )
+                finalizarAguardar();
+                return false;
+        }else if(senha.length < 7){
+            Swal.fire(
+                    'Erro!',
+                    'Insira uma senha com pelo menos 7 dígitos',
+                    'error'
+                )
+                finalizarAguardar();
+                return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nome,
+                emailServer: email,
+                cachorroServer: nomeCachorro,
+                senhaServer: senha,
+                porteServer: porte
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                cardErro.style.display = "block";
+                mensagem_erro.innerHTML = "";
+                Swal.fire(
+                    'Cadastro efetuado!',
+                    'Seja bem vindo a loyalLoki',
+                    'success'
+                ).then(function () {
+                    window.location = "login.html";
+                });
+
+                limparFormulario();
+                finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+
+</script>

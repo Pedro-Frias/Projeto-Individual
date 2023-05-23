@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    box-sizing:border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background-color:  white
+    ;
+}
+
+/* ÁREA SIDEBAR */
+
+nav{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    background: #4bcefa ;
+    width: 6.5%;
+    overflow: hidden;
+    transform: width 0.2s linear;
+    box-shadow: 0 20px 35px (0,0,0,0.1);
+}
+
+.nav2{
+    background: #f8ffa0 ;
+}
+
+
+.logo{
+    text-align: center;
+    display: flex;
+    text-align: center;
+    transform: all 0.5s ease;
+    margin: 10px 0 0 10px; 
+}
+
+.logo img{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.logo span{
+    font-weight: bold;
+    padding-left: 15px;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+a{
+    position: relative;
+    color: black;
+    font-size: 14px;
+    display: table;
+    width: 300px;
+    padding: 10px;
+    margin-top: 35px;
+}
+
+
+.fa-solid{
+    position: relative;
+    width: 70px;
+    height: 40px;
+    top: 14px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.nav-item{
+    position: relative;
+    top: 12px;
+    margin-left: 10px;
+}
+
+a:hover{
+    background: white;
+}
+
+.nav2:hover{
+    width: 280px;
+    background:#edf769;
+    transition: all 1s ease;
+}
+
+nav:hover{
+    width: 280px;
+    background:     #b7edff;
+    transition: all 1s ease;
+}
+
+.logout{
+    position: relative;
+    bottom: 0;
+}
+
+/* ÁREA GRÁFICO */
+
+.container{
+    width: 93.5%;
+/*     background: linear-gradient(to bottom, #d2e1f4, #abe3f6);  */
+    background: white;
+    margin-left: 6.5%;
+    padding: 40px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.text-dashboard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title-dashboard{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+.slides-list {
+    list-style: none;
+    margin: 20px 0px 0px -65px;
+    padding: 0;
+}
+
+.slide{
+    background-color: white;
+    border-radius: 20px;
+    margin-left: 300px;
+    width: 700px;
+    height: 350px;
+}
+
+/* canvas {
+    height: auto;
+    width: 80vw;
+    padding: 10px 1vw 10px 3vw;
+} */
+
+
+

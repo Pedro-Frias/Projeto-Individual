@@ -1,0 +1,47 @@
+/* CORPO DA ÁREA DE MÉTRICAS E ANALITYCS  */
+
+.container-metrica{
+    height: 100%;
+    display: flex;
+    gap: 40px;
+    width: 93.5%;
+    margin-left: 6.5%;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.tarefa-total{
+    background-color: bisque;
+    border: 1px black solid;
+    border-radius: 10px;
+    width: 70%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.qtd-total-tarefas{
+    font-size: 53px;
+}
+
+.metricas-tarefa{
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+}
+
+.grafico1{
+    height: 1px;
+}
+
+.grafico-chart{
+    height: 310px;
+}
+
+canvas{
+    height: 1px;
+
+}

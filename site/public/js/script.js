@@ -17,17 +17,14 @@ window.addEventListener('scroll', () => {
     -- Tentativa de adotar o for 
 */
 
-var counter = 1;
-
 for (var i = 1; i <= 3; i++) {
-    setInterval(function() {
+    (function(counter) {
+      setInterval(function() {
         document.getElementById('radio' + counter).checked = true;
-        counter++;
-        if (counter > 3) {
-            counter = 1;
-        }
-    }, 7500 * i);
-}
+        counter = (counter % 3) + 1;
+      }, 7500 * i);
+    })(i);
+  }
  
 
 /* Função calculadora */
@@ -69,8 +66,8 @@ function verIdade(){
   /* Botão mostrar senha */
 
 function mostrarSenha() {
-    var campoSenha = document.getElementById("senha");
-    var campoConfirmarSenha = document.getElementById("confirmarSenha");
+    var campoSenha = document.getElementById("input_senha");
+    var campoConfirmarSenha = document.getElementById("input_confirmar_senha");
     
     if (campoSenha.type === "password") {
         campoSenha.type = "text";

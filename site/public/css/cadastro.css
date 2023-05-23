@@ -60,26 +60,43 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 14px;
+    margin-top: 15px;
+    gap: 27px;
 }
 
 .label-cadastro {
+    position: absolute;
+    top: -12px;
+    left: 0;
+    padding: 10px 0;
     font-size: 16px;
+    color: black;
+    pointer-events: none;
+    transition: 0.5s ease;
 }
 
 .input-cadastro input {
     border: none;
     border-bottom: 2px solid black;
     text-align: center;
-    height: 13px;
+    height: 19px;
     outline: none;
-    font-size: 16px;
+    font-size: 15px;
+    font-weight: 500;
     width: 240px;
 }
 
+.input-cadastro input:focus ~ label,
+.input-cadastro input:valid ~ label
+{
+    top: -26px;
+    left: 0;
+    color: black;
+    font-size: 14px;
+}
+
 .input-cadastro{
-    display: flex;
-    flex-direction: column;
+    position: relative;
 }
 
 .porte-cadastro {
@@ -118,6 +135,9 @@
     transition: 1s;
 }
 
+a:hover{
+    cursor: pointer;
+}
 .select-porte{
     border: 1px solid #000000;
     border-radius: 10px;
@@ -158,10 +178,10 @@ a .icon-nav-register,a .icon-nav2-register {
 /* ÍCONE BOTAO */
 
 a .icon-nav-register{
-    transform: translate(302%, 186px);
+    transform: translate(289%, 168px);
 }
 a .icon-nav2-register{
-    transform: translate(-296%, 186px);
+    transform: translate(-296%, 168px);
 }
 
 a:hover .icon-nav-register {

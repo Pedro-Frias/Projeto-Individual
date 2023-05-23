@@ -1,0 +1,100 @@
+
+main{    
+}
+
+body{
+    box-sizing: border-box;
+}
+
+.container-sobremim{
+    background-image: linear-gradient(109.6deg, rgba(110,123,251,1) -6.9%, rgba(156,252,248,1) 100% );
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.conheca-mais{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100vh;
+    justify-content: space-around;
+}
+
+.title{
+    text-align: center;
+    display: flex ;
+    flex-direction: column;
+}
+
+.img-primeira{
+    width: 500px;
+	height: 350px;
+	box-sizing: border-box;
+	border: 2px rgb(189, 22, 255) solid;
+	border-radius: 50%;
+	overflow: hidden;
+	box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+	transform: translatey(0px);
+	animation: float 6s ease-in-out infinite;
+}
+.img-primeira:hover{
+    background-image: url(../assets/sptech.jpeg);
+}
+
+@keyframes float {
+	0% {
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+		transform: translatey(0px);
+	}
+	50% {
+		box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+		transform: translatey(-20px);
+	}
+	100% {
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+		transform: translatey(0px);
+	}
+}
+
+.title-sobremim{
+    font-size: 40px;
+    color: white;
+}
+.title-nome{
+    font-size: 45px;
+    font-weight: bold;
+    color: rgb(157, 70, 238);
+}
+
+img{
+    height: 100px;
+}
+.sobre-mim{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sobremim-historia{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.title-historia{
+    font-size: 40px;
+}
+
+ 
+.span-historia{
+    width: 50%;
+    font-size: 18px;
+    font-weight: bold;
+}

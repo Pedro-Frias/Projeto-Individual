@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/5830285a36.js" crossorigin="anonymous"></script>
+    <script src="../js/funcoes.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <link rel="stylesheet" href="../css/dashboard-inicial.css">
+    <link rel="stylesheet" href="../css/metricas.css">
+    <link rel="icon" href="assets/dog.png">
+    <title>Metricas it´s done</title>
+</head>
+<body onload="listarQtdTarefas(),grafico()">
+    <nav>
+        <ul>
+            <li>
+                <a href="../index.html" class="logo">
+                    <img src="../assets/logo-sem-escrita.png" alt="">
+                    <span class="nav-item">loyal Loki</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="fa-solid fa-users"></i>
+                    <span class="nav-item">Comunidade</span>
+                </a>
+            </li>
+            <li>
+                <a href="to-do.html">
+                    <i class="fa-solid fa-book"></i>
+                    <span class="nav-item">book</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span class="nav-item">Métricas</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="fa-solid fa-paw"></i>
+                    <span class="nav-item">Adote</span>
+                </a>
+            </li>
+            <li>
+                <a href="" class="logout" onclick="limparSessao()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span class="nav-item">Sair</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="container-metrica">
+            <div class="title-metrica">
+                <span style="font-size: 40px;">Rendimento tarefas</span>
+            </div>
+            <div class="tarefa-total">
+                <div style="font-size: 30px;">Quantidade de tarefas totais</div>
+                <div id="tarefasRegistradas"></div>
+            </div>
+            <div class="metricas-tarefa">
+                <div class="grafico1">
+                    <div style="text-align: center;font-size: 24px;">Gráfico de quantidade tarefas feitas por atividade</div>
+                    <div class="grafico-chart">
+                        <canvas style="border: 1px black solid; border-radius: 10px;"id="myChart"></canvas>
+                    </div>
+                </div>
+                <div class="">Futuro Ranking</div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+
+<b class="qtd-total-tarefas"></b>
+
+<script>
+        var idUsuario = sessionStorage.ID_USUARIO;
+        console.log(idUsuario)
+
+    function listarQtdTarefas(){
+        console.log("testando")
+        fetch(`/metricas/listarQtdTarefas/${idUsuario}`).then(function (resposta) {
+            console.log("entrei no fetch")
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var tarefa = document.getElementById("tarefasRegistradas");
+                    var texto = document.createElement("span");
+                    texto.innerHTML = "Nada encontrado"
+                    tarefa.appendChild(texto);
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var tarefa = document.getElementById("tarefasRegistradas");
+                    tarefa.innerHTML = "";
+                    for (let i = 0; i < resposta.length; i++) {
+                        var publicacao = resposta[i];
+
+                        tarefa.innerHTML = `<b class="qtd-total-tarefas">${publicacao.qtdTarefa}</b>`
+                    }
+                    /* finalizarAguardar(); */
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+
+    }
+
+    /* SCRIPT GRÁFICO TAREFAS X ATIVIDADE */
+
+
+    function grafico(id) {
+        var id = sessionStorage.getItem('ID_USUARIO');
+        console.log('id do usuario: '+id)
+
+        fetch(`/metricas/grafico/${id}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+                    plotarGrafico(resposta, id);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+    
+    function plotarGrafico(resposta, id) {
+
+        console.log('iniciando plotagem do gráfico...');
+        let labels = [];
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: [],
+                data: [],
+                fill: false,
+                backgroundColor: ['#6A4D75','#174E7D','#676E4C','#FF7D25','#d6a200','#00CAFF','#83366a','#8a2434','#a26511;','#6f8c97'],
+            }],
+        
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+        // for (var cont = 0; cont < resposta.length; cont++) {
+        //     datasets.label.push(resposta.nome)
+        //     console.log(label)
+        // }
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.atividade);
+            dados.datasets[0].data.push(registro.qtdTarefa);
+        }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labels)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+        // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'bar',
+            data: dados,
+        };
+
+        // Adicionando gráfico criado em div na tela
+        let myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+        
+
+        // setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+    }
+
+</script>
