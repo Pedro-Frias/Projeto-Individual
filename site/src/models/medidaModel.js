@@ -1,13 +1,10 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas() {
+function buscarPortes() {
 
     instrucaoSql = ''
 
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `SELECT COUNT(Usuario.fkPorte) as voto, porteCachorro.porte AS porte 
-        FROM Usuario JOIN porteCachorro ON  porteCachorro.idPorte = usuario.fkPorte group by Usuario.fkPorte ;`;
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `SELECT COUNT(Usuario.fkPorte) as voto, porteCachorro.porte AS porte 
         FROM Usuario JOIN porteCachorro ON  porteCachorro.idPorte = usuario.fkPorte group by Usuario.fkPorte ;`;
     } else {
@@ -21,5 +18,5 @@ function buscarUltimasMedidas() {
 
 
 module.exports = {
-    buscarUltimasMedidas,
+    buscarPortes,
 }

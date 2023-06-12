@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,9 +12,10 @@
     <link rel="stylesheet" href="../css/dashboard-inicial.css">
     <link rel="stylesheet" href="../css/metricas.css">
     <link rel="icon" href="assets/dog.png">
-    <title>Metricas it´s done</title>
+    <title>Analytics Tarefas</title>
 </head>
-<body onload="listarQtdTarefas(),grafico()">
+
+<body onload="listarQtdTarefas(),fazerRanking(),grafico()">
     <nav>
         <ul>
             <li>
@@ -23,7 +25,7 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="dashboard.html">
                     <i class="fa-solid fa-users"></i>
                     <span class="nav-item">Comunidade</span>
                 </a>
@@ -35,19 +37,19 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="metricas.html">
                     <i class="fa-solid fa-chart-line"></i>
                     <span class="nav-item">Métricas</span>
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="doacao.html">
                     <i class="fa-solid fa-paw"></i>
-                    <span class="nav-item">Adote</span>
+                    <span class="nav-item">Doar</span>
                 </a>
             </li>
             <li>
-                <a href="" class="logout" onclick="limparSessao()">
+                <a href="../index.html" class="logout" onclick="limparSessao()">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <span class="nav-item">Sair</span>
                 </a>
@@ -55,36 +57,42 @@
         </ul>
     </nav>
 
-    <main>
-        <div class="container-metrica">
-            <div class="title-metrica">
-                <span style="font-size: 40px;">Rendimento tarefas</span>
-            </div>
-            <div class="tarefa-total">
-                <div style="font-size: 30px;">Quantidade de tarefas totais</div>
-                <div id="tarefasRegistradas"></div>
-            </div>
-            <div class="metricas-tarefa">
-                <div class="grafico1">
-                    <div style="text-align: center;font-size: 24px;">Gráfico de quantidade tarefas feitas por atividade</div>
-                    <div class="grafico-chart">
-                        <canvas style="border: 1px black solid; border-radius: 10px;"id="myChart"></canvas>
-                    </div>
+    <div class="container-metrica">
+        <div class="title-metrica">
+            <span style="font-size: 40px;background-color:#b7edff;border-radius: 5px;padding: 1px;">Rendimento
+                tarefas</span>
+        </div>
+        <div class="tarefa-total">
+            <div style="font-size: 30px;">Quantidade de tarefas totais</div>
+            <div id="tarefasRegistradas"></div>
+        </div>
+        <div class="metricas-tarefa">
+            <div class="grafico1">
+                <div class="title-atividades">Gráfico de quantidade tarefas feitas por atividade</div>
+                <div class="grafico-chart">
+                    <canvas style="border: 1px black solid; border-radius: 10px;background-color: white;"
+                        id="myChart"></canvas>
                 </div>
-                <div class="">Futuro Ranking</div>
+            </div>
+            <div class="ranking">
+                <div style="border-bottom: 1px solid black;" class="title-atividades">Ranking de atividades</div>
+                <div class="ranking-inner" id="rankingAtividades"></div>
             </div>
         </div>
-    </main>
+    </div>
+
 </body>
+
 </html>
 
 <b class="qtd-total-tarefas"></b>
 
 <script>
-        var idUsuario = sessionStorage.ID_USUARIO;
-        console.log(idUsuario)
+/* Função fazendo select count(idTarefa) para saber total de tarefas feitas pelo usuário */
 
-    function listarQtdTarefas(){
+    function listarQtdTarefas() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+    console.log(idUsuario)
         console.log("testando")
         fetch(`/metricas/listarQtdTarefas/${idUsuario}`).then(function (resposta) {
             console.log("entrei no fetch")
@@ -117,12 +125,49 @@
 
     }
 
+    /* Ranking com order by para fornecer a lista das tarefas mais feitas */
+
+    function fazerRanking(id) {
+        var id = sessionStorage.getItem('ID_USUARIO');
+        console.log('id do usuario: ' + id)
+        fetch(`/metricas/fazerRanking/${id}`).then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var feed = document.getElementById("rankingAtividade");
+                    var mensagem = document.createElement("span");
+                    mensagem.innerHTML = "Não encontrou nenhum ranking"
+                    feed.appendChild(mensagem);
+                    throw "Nenhum resultado encontrado!!";
+                }
+
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+                    var feed = document.getElementById("rankingAtividades");
+                    var posicao = 1;
+                    for (let i = 0; i < resposta.length; i++) {
+                    var publicacao = resposta[i];
+                    var nomeAtividade = document.createElement("span");
+                    nomeAtividade.innerHTML = `<b>${posicao}° </b> <span>${publicacao.atividade}</span><br>`
+                    posicao++
+                    feed.appendChild(nomeAtividade)
+                    }
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+    }
+
+
     /* SCRIPT GRÁFICO TAREFAS X ATIVIDADE */
 
 
     function grafico(id) {
         var id = sessionStorage.getItem('ID_USUARIO');
-        console.log('id do usuario: '+id)
+        console.log('id do usuario: ' + id)
 
         fetch(`/metricas/grafico/${id}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
@@ -139,6 +184,7 @@
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
     }
+
     
     function plotarGrafico(resposta, id) {
 
@@ -150,9 +196,9 @@
                 label: [],
                 data: [],
                 fill: false,
-                backgroundColor: ['#6A4D75','#174E7D','#676E4C','#FF7D25','#d6a200','#00CAFF','#83366a','#8a2434','#a26511;','#6f8c97'],
+                backgroundColor: ["#00FFFF", "#B2DFEE", "#1E90FF", "#4169E1", "#191970", "#000080"],
             }],
-        
+
         };
 
         console.log('----------------------------------------------')
@@ -181,6 +227,18 @@
         const config = {
             type: 'bar',
             data: dados,
+            options: {
+                scales: {
+                    yAxes: [{
+
+                        display: true,
+                        ticks: {
+                            beginAtZero: true, // Começa a partir do 0
+                            scaleBeginAtZero: true
+                        }
+                    }]
+                }
+            }
         };
 
         // Adicionando gráfico criado em div na tela
@@ -188,9 +246,7 @@
             document.getElementById('myChart'),
             config
         );
-        
 
-        // setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
     }
 
 </script>

@@ -10,8 +10,14 @@ function listarQtdTarefas(idUsuario){
     return database.executar(instrucao);
 }
 
-
-function grafico(idUsuario) {
+function fazerRanking(idUsuario) {
+    var instrucao = `
+    SELECT COUNT(tarefa.fkAtividade) as voto, nome AS atividade FROM tarefa JOIN atividade ON  atividade.idAtividade = tarefa.fkAtividade where fkUsuario = ${idUsuario} group by tarefa.fkAtividade order by voto desc;  
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+function graficoAtividade(idUsuario) {
     var instrucao = `
     SELECT COUNT(tarefa.fkAtividade) as qtdTarefa, atividade.nome AS atividade
     FROM tarefa 
@@ -23,7 +29,9 @@ function grafico(idUsuario) {
 }
 
 
+
 module.exports = {
     listarQtdTarefas,
-    grafico
+    graficoAtividade,
+    fazerRanking
 }

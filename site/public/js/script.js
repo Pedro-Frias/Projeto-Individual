@@ -18,50 +18,16 @@ window.addEventListener('scroll', () => {
 */
 
 for (var i = 1; i <= 3; i++) {
-    (function(counter) {
+    (function(contador) {
       setInterval(function() {
-        document.getElementById('radio' + counter).checked = true;
-        counter = (counter % 3) + 1;
+        document.getElementById('radio' + contador).checked = true;
+        contador = (contador % 3) + 1;
       }, 7500 * i);
     })(i);
   }
  
 
 /* Função calculadora */
-
-/* fazer mais algumas validações */
-
-function verIdade(){
-    div_resultado.innerHTML = ""
-    var idadeCachorro = Number(input_idade_cachorro.value);
-    var idade;
-    if(idadeCachorro == ""){
-        alert("Insira uma idade valida")
-    }
-    else if (document.getElementById('porte-pequeno').checked && idadeCachorro <= 2){
-        idade = (idadeCachorro * 12.5)
-        div_resultado.innerHTML = `A idade do seu cachorro seria em torno de ${idade}  <br>`
-    }else if (document.getElementById('porte-medio').checked && idadeCachorro <= 2){
-        idade = (idadeCachorro * 10.5)
-        div_resultado.innerHTML = `A idade do seu cachorro seria em torno de ${idade}  <br>`
-    }else if (document.getElementById('porte-grande').checked && idadeCachorro <= 2){
-        idade = (idadeCachorro * 18)
-        div_resultado.innerHTML = `A idade do seu cachorro seria em torno de ${idade}  <br>`
-    }
-    else if(document.getElementById('porte-pequeno').checked){
-        idade = (2 * 12.5) + ((idadeCachorro - 2) * 4.5)
-        div_resultado.innerHTML = `A idade do seu cachorro seria em torno de ${idade}  <br>`
-    }else if(document.getElementById('porte-medio').checked){
-        idade = (2 * 10.5) + ((idadeCachorro - 2) * 5.7)
-        div_resultado.innerHTML = `A idade do seu cachorro seria em torno de ${idade}  <br>`
-    }else if(document.getElementById('porte-grande').checked){
-        idade = (2 * 18) + ((idadeCachorro - 2) * 8)
-        div_resultado.innerHTML = `A idade do seu cachorro seria em torno de ${idade} anos <br>`
-    }else{
-        alert("Insira algum valor válido para começar")
-    }
-}
-
 
   /* Botão mostrar senha */
 
@@ -77,3 +43,27 @@ function mostrarSenha() {
         campoConfirmarSenha.type = "password"
     }
 }
+ 
+/* Função de trocar imagens */
+
+var fotosLoki = ["LokiBanco","LokiBanco2","LokiCoberta","LokiColo","LokiCorda","LokiFamilia","LokiNenem","LokiPrimeiroDia","LokiSol"]
+function trocarFoto(){
+var numero = parseInt(Math.random() * fotosLoki.length);
+imagens_loki.innerHTML = `<img style="width: 500px"class="img-primeira" src="assets/fotosLoki/${fotosLoki[numero]}.jpeg" alt="">` 
+}
+setInterval(trocarFoto, 4500);
+
+
+/* Função de alterar título do saiba mais */
+
+function mudarTitulo(){
+  var frases = ["Por que ter um cachorro?","Os benefícios do cachorro", "Por que ter um companheiro?","Quais as vantagens de ter um cachorro"];
+  for (let i = 0; i < frases.length; i++) {
+    setTimeout(function() {
+      frase_saiba_mais.innerHTML = `${frases[i]}` 
+    }, i * 2500);
+  }
+}
+
+setInterval(mudarTitulo, 11000);
+

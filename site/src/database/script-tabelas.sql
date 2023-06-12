@@ -12,11 +12,15 @@ create table portecachorro(
     porte varchar(45)
 );
 
-SELECT COUNT(Usuario.fkPorte) as voto, porteCachorro.porte AS porte 
-FROM Usuario JOIN porteCachorro ON  porteCachorro.idPorte = usuario.fkPorte group by Usuario.fkPorte;
-
-
-alter table tarefa modify column descricao varchar(1000);
+create table doacao(
+	idDoacao int primary key auto_increment,
+    nomeCachorro varchar(45) NOT NULL,
+    racaCachorro varchar(45) NOT NULL,
+    nomeDono varchar(45) NOT NULL,
+    contato varchar(45) NOT NULL,
+    imagem varchar(300)
+    );
+    
 
 CREATE TABLE tarefa (
 	idTarefa int primary key auto_increment,
@@ -26,30 +30,11 @@ CREATE TABLE tarefa (
     fkUsuario int, constraint chkUser foreign key(fkUsuario) references usuario(idUsuario),
     fkAtividade int, constraint chkAtiv foreign key(fkAtividade) references atividade(idAtividade)
 );
-
-select * from tarefa;
-insert into tarefa(titulo,dtAtividade,descricao,fkUsuario,fkAtividade) values 
-('aaaaa','2023-08-08','abbbb',22,6);
-
 	create table atividade (
     idAtividade int primary key auto_increment,
     nome varchar(45)
     );
     
-insert into atividade values
-(null,'Higiene'),
-(null,'Lazer'),
-(null,'Adestramento'),
-(null,'Vacinas'),
-(null,'Veterinário'),
-(null,'Alimentação');
-desc tarefa;
-
-drop table tarefa;
-
-SELECT COUNT(Usuario.fkPorte) as voto, porteCachorro.porte AS porte 
-FROM Usuario JOIN porteCachorro ON  porteCachorro.idPorte = usuario.fkPorte group by Usuario.fkPorte;
-
 -- FUNÇAO LISTAR
 
     SELECT 

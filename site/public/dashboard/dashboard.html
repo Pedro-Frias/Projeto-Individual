@@ -29,7 +29,7 @@
             <li>
                 <a href="">
                     <i class="fa-solid fa-users"></i>
-                    <span class="nav-item">Comunidadade</span>
+                    <span class="nav-item">Comunidade</span>
                 </a>
             </li>
             <li>
@@ -45,13 +45,13 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="doacao.html">
                     <i class="fa-solid fa-paw"></i>
-                    <span class="nav-item">Adote</span>
+                    <span class="nav-item">Doar</span>
                 </a>
             </li>
             <li>
-                <a href="" class="logout" onclick="limparSessao()">
+                <a href="../index.html" class="logout" onclick="limparSessao()">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <span class="nav-item">Sair</span>
                 </a>
@@ -73,9 +73,6 @@
         </div>
         <!--   class="slide-show select-disable" -->
     </div>
-    <div>
-        <img style="height: 270px; margin-left: 6%; width: 100%;" src="../assets/cachorro-nadando.png" alt="">
-    </div>
 
 </body>
 
@@ -92,9 +89,6 @@
 
     function obterDadosGrafico(porte) {
 
-        if (proximaAtualizacao != undefined) {
-            clearTimeout(proximaAtualizacao);
-        }
 
         fetch(`/medidas/ultimas/:`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
@@ -129,7 +123,7 @@
                 {
                     yAxisID: 'portes-cachorro',
                     label: 'Portes dos cachorros da comunidade',
-                    backgroundColor: ["#00b300", "#33cc33", "#66d966", "#99e699", "#ccffcc"],
+                    backgroundColor: ["#000080", "#191970", "#4169E1", "#1E90FF", "#B2DFEE"],
                     fill: true,
                     data: []
                 }
@@ -139,7 +133,6 @@
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
             dados.labels.push(registro.porte);
-            dados.datasets[0].data.push(registro.porte);
             dados.datasets[1].data.push(registro.voto);
             console.log(registro.voto)
 
@@ -169,7 +162,7 @@
                         id: 'portes-cachorro',
                         ticks: {
                             beginAtZero: true,
-                            max: 14,
+                            max: 20,
                             min: 0
                         }
                     }, {

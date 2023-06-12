@@ -13,6 +13,11 @@ body {
 
 /* ÁREA NAVBAR */
 
+/* .semi-header{
+  height: 13vh;
+} */
+
+
 .header {
   /* background: transparent; */
   /* border-bottom: 2px black solid; */
@@ -187,7 +192,7 @@ a:hover .icon-nav6 {
 .slider {
   width: 300vw;
   height: 100vh;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .slides input {
@@ -411,6 +416,7 @@ a:hover .icon-nav6 {
 
 .imagem-saiba-mais {
   position: absolute;
+  filter: hue-rotate(45deg);
   height: 87vh;
   width: 100%;
 }
@@ -418,11 +424,15 @@ a:hover .icon-nav6 {
 .saiba-mais-texto {
   position: absolute;
   display: flex;
-  align-items: center;
-  margin-top: 57px;
+  margin-left: 45vw;
+  border-radius: 22%;
+  background-color: rgb(255 182 182);
+  width: 52%;
+  border: 1px black solid;
+  height: 82%;
+  margin-top: 10px;
   text-align: center;
   flex-direction: column;
-  left: 556px;
 }
 
 
@@ -698,7 +708,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 /* ÁREA DE DICAS SOBRE CARDS */
 .home-dicas {
-  height: 87vh;
+  height: 88vh;
   display: flex;
   width: 100%;
   position: absolute;
@@ -804,4 +814,93 @@ input[type=number]::-webkit-outer-spin-button {
   position: absolute;
   display: flex;
   justify-content: center;
+}
+
+/* Área do quiz */
+
+.container-quiz{
+  height: 97vh;
+  /* border: 1px black solid; */
+  display: flex;
+  width: 100%;
+  margin-top: 88vh;
+  /* position: relative; */
+  background-color: #dfbef5;
+  text-align: center;
+  /* gap: 32vw; */
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+  /* top: 361vh; */
+}
+
+.pergunta{
+    /* margin-top: 17px; */
+    display: flex;
+    border: 1px black solid;
+    flex-direction: column;
+    width: 480px;
+    border-radius: 10px;
+    margin-top: 135px;
+    background: white;
+    justify-content: flex-start;
+    gap: 30px;
+    align-items: center;
+    height: 60%;
+    margin-left: 10vw;
+}
+
+
+
+/* Área footer */
+
+footer{
+  height: 43vh;
+  display: flex;
+  width: 100%;
+  position: absolute;
+  /* background-color: #E6E6FA; */
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* top: 361vh; */
+}
+
+.text-footer{
+  display: flex;
+  width: 552px;
+  gap: 10px;
+}
+
+.button-quiz {
+  margin-top: 20px;
+  width: 170px;
+  height: 50px;
+  position: relative;
+  text-align: center;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 2px black solid;
+  text-decoration: none;
+  border-radius: 10px;
+  color: black;
+  transition: 1s;
+  cursor: pointer;
+}
+
+h2{
+  text-transform: uppercase;
+}
+
+input{
+  border: none;
+  border-bottom: 3px black solid;
+}
+
+.button-quiz:hover {
+  box-shadow: 5px 5px #000000;
 }

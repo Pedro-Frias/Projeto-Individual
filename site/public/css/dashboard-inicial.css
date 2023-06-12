@@ -11,7 +11,7 @@
 }
 
 body{
-    background-color:  white
+    background-color: rgb(197 248 230)
     ;
 }
 
@@ -23,7 +23,7 @@ nav{
     bottom: 0;
     left: 0;
     height: 100%;
-    background: #4bcefa ;
+    background: #b7edff ;
     width: 6.5%;
     overflow: hidden;
     transform: width 0.2s linear;
@@ -81,6 +81,11 @@ a{
     top: 12px;
     margin-left: 10px;
 }
+.nav-item2{
+    position: relative;
+    top: -10px;
+    margin-left: 10px;
+}
 
 a:hover{
     background: white;
@@ -92,9 +97,10 @@ a:hover{
     transition: all 1s ease;
 }
 
+
 nav:hover{
     width: 280px;
-    background:     #b7edff;
+    background:     #4bcefa;
     transition: all 1s ease;
 }
 
@@ -107,8 +113,8 @@ nav:hover{
 
 .container{
     width: 93.5%;
-/*     background: linear-gradient(to bottom, #d2e1f4, #abe3f6);  */
-    background: white;
+    height: 100vh;
+    background-image: url(../assets/1123963_OPSEG70.jpg);
     margin-left: 6.5%;
     padding: 40px;
     display: flex;
@@ -118,12 +124,15 @@ nav:hover{
 
 .text-dashboard{
     display: flex;
+    color: white;
     flex-direction: column;
     align-items: center;
 }
 
 .title-dashboard{
     font-size: 30px;
+    margin-top: 60px;
+    color: white;
     font-weight: bold;
 }
 
@@ -150,3 +159,24 @@ nav:hover{
 
 
 
+/* ÁREA DOAÇÃO */
+
+.container-doacao{
+    width: 93.5%;
+    height: 100vh;
+    margin-left: 6.5%;
+    padding: 40px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.nav3{
+    background: rgb(217, 255, 242) ;
+}
+
+.nav3:hover{
+    width: 280px;
+    background:rgb(138, 255, 214);
+    transition: all 1s ease;
+}

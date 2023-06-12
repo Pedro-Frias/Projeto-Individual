@@ -15,6 +15,7 @@ function listar(req, res) {
     });
 }
 
+
 function listarPorUsuario(req, res) {
     var idUsuario = req.params.idUsuario;
 

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Preview Before Upload</title>
+    <!--Font Awesome CDN-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!--Google Font-->
+    <script src="https://kit.fontawesome.com/5830285a36.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/funcoes.js"></script>
+    <!--Stylesheet-->
+    <link rel="stylesheet" href="../css/doacao.css">
+    <link rel="stylesheet" href="../css/dashboard-inicial.css">
+</head>
+<body>
+
+    
+    <nav class="nav3">
+        <ul>
+            <li>
+                <a href="../index.html" class="logo">
+                    <img src="../assets/logo-sem-escrita.png" alt="">
+                    <span class="nav-item2">loyal Loki</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="fa-solid fa-users"></i>
+                    <span class="nav-item2">Comunidade</span>
+                </a>
+            </li>
+            <li>
+                <a href="to-do.html">
+                    <i class="fa-solid fa-book"></i>
+                    <span class="nav-item2">book</span>
+                </a>
+            </li>
+            <li>
+                <a href="metricas.html">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span class="nav-item2">Métricas</span>
+                </a>
+            </li>
+            <li>
+                <a href="doacao.html">
+                    <i class="fa-solid fa-paw"></i>
+                    <span class="nav-item2">Doar</span>
+                </a>
+            </li>
+            <li>
+                <a href="../index.html" class="logout" onclick="limparSessao()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span class="nav-item2">Sair</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <h1 style="margin-left: 500px;">VENHA DOAR UM CÃO</h1>
+    <span style="margin-left: 180px;">Caso você encotre um cão de rua ou que não possui mais condições para cuidar publique em nossa comunidade!</span>
+    <div class="container-doacao">
+        <div class="estrutura-input">
+            Nome do cachorro:
+            <input name="nomeCachorro" id="nomeCachorro" type="text"/>
+            Raça do cachorro:
+            <input name="text" id="racaCachorro" type="text" />
+            Nome do dono:
+            <input name="text" id="nomeDono" type="text" />
+            Contato:
+            <input name="text" id="contato" type="text" />   
+            <button class="button-adocao" onclick="enviar()">Enviar</button>
+        </div>
+            <div class="container-file">
+                <figure class="image-container">
+                    <img src="../assets/fotoAdocao.jpeg" style="height: 300px;width: 300px;" id="chosen-image">
+                    <figcaption id="file-name"></figcaption>
+                </figure>
+                
+                <input type="file" id="foto" accept="image/*">
+                <label for="foto">
+                    <i class="fas fa-upload"></i>Escolha uma foto
+          </label>
+    
+    <!--Script-->
+    <script src="../js/doacao.js"></script>
+</body>
+</html>
+
+<script>
+
+function alertaSucessor() {
+        Swal.fire(
+            'Cachorro registrado!',
+            'Muito obrigado e parabéns pela atitude!',
+            'success'
+        )
+    }
+
+    function alertaErro() {
+        Swal.fire(
+            'Erro ao cadastrar',
+            'Insira todos os campos informados',
+            'error'
+        )
+    }
+
+
+  function enviar() {
+    const formData = new FormData();
+    formData.append('foto', foto.files[0])
+    formData.append('nomeCachorro', nomeCachorro.value)
+    formData.append('racaCachorro', racaCachorro.value)
+    formData.append('nomeDono', nomeDono.value)
+    formData.append('contato', contato.value)
+
+    if(nomeCachorro.value == "" || racaCachorro.value == "" || nomeDono.value == "" || contato.value == "" || foto.files[0] == undefined){
+            alertaErro()
+            return false;
+        }
+
+
+    fetch("/doacao/cadastro", {
+      method: "POST",
+      body: formData
+    })
+      .then(res => {
+        window.location = "./dashboard.html"
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+</script>

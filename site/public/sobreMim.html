@@ -11,25 +11,27 @@
     <script src="js/script.js"></script>
 </head>
 
-<body>
+<body onload="trocarFoto()">
     <header class="header-sobremim">
         <div class="logo-area-nav">
-            <a href="teste.html"><img src="assets/Logo-sem-fundo.png" alt=""></a>
+            <a href="index.html"><img src="assets/Logo-sem-fundo.png" alt=""></a>
         </div>
         <div class="inner-area-nav">
             <ul class="list-nav-sobremim">
-                <li><a style="color: white; font-weight: bold;" class="link-nav" href="index.html"><span class="icon-nav"></span> Home <span class="icon-nav2"></span></a>
+                <li><a style="color: white; font-weight: bold;" class="link-nav" href="index.html"><span
+                            class="icon-nav"></span> Home <span class="icon-nav2"></span></a>
                 </li>
-                <li><a style="color: white; font-weight: bold;" class="link-nav" href="#home-calculadora"> <span class="icon-nav"> </span>Simule <span
-                            class="icon-nav3"></span></a></li>
-                <li><a style="color: white; font-weight: bold;" class="link-nav" href="#"> <span class="icon-nav"> </span>Adote <span
-                            class="icon-nav2"></span></a></li>
-                <li><a style="color: white; font-weight: bold;font-size: 23px;" class="link-nav" href="sobreMim.html"> <span class="icon-nav"></span>Sobre mim <span
-                            class="icon-nav4"></span></a></li>
-                <li><a style="color: white; font-weight: bold;" class="link-nav" href="login.html"> <span class="icon-nav"></span>Login<span class="icon-nav5"></span></a>
+                <li><a style="color: white; font-weight: bold;" class="link-nav" href="index.html#home-calculadora"> <span
+                            class="icon-nav"> </span>Simule <span class="icon-nav3"></span></a></li>
+                <li><a style="color: white; font-weight: bold;" class="link-nav" href="adocao.html"> <span class="icon-nav">
+                        </span>Adote <span class="icon-nav2"></span></a></li>
+                <li><a style="color: white; font-weight: bold;font-size: 23px;" class="link-nav" href="sobreMim.html">
+                        <span class="icon-nav"></span>Sobre mim <span class="icon-nav4"></span></a></li>
+                <li><a style="color: white; font-weight: bold;" class="link-nav" href="login.html"> <span
+                            class="icon-nav"></span>Login<span class="icon-nav5"></span></a>
                 </li>
-                <li><a style="color: white; font-weight: bold;" class="link-nav" href="cadastro.html"> <span class="icon-nav"></span>Cadastro <span
-                            class="icon-nav6"></span></a></li>
+                <li><a style="color: white; font-weight: bold;" class="link-nav" href="cadastro.html"> <span
+                            class="icon-nav"></span>Cadastro <span class="icon-nav6"></span></a></li>
             </ul>
             </nav>
     </header>
@@ -49,19 +51,41 @@
                 </div>
             </div>
             <div class="sobre-mim">
-                <span class="title-historia">Um pouco sobre mim...</span >
+                <span class="title-historia">Um pouco sobre mim...</span>
                 <div class="sobremim-historia">
-                    <span class="span-historia">Olá! Me chamo Pedro Henrique Frias Bertazzo,tenho 18 anos , sou estudante de Analise e
-                        Desenvolvimento de Sistemas pela SPTech e sou desevolvedor com objetivo e foco em crescer minha
-                        carreira na área de back-end, eu amo quebrar a cabeça em códigos e logica de sistemas complexos ! Minha paixão por tecnologia surgiu-se desde de pequeno e ao conquistar meu
-                        primeiro emprego de tecnologia/desenvolvedor como jovem aprendiz essa paixão cresceu. A priori,
-                        tomei um susto do quão complexos são as coisas dentro de um sistema de uma empresa, mas com
-                        muito esforço vi como era uma área interessante! </span>
+                    <span class="span-historia">Olá! Me chamo Pedro Henrique Frias Bertazzo, para as pessoas mais
+                        próximas sou conhecido por Frias,tenho 18 anos , sou estudante e amante de tecnologia e
+                        atualemnte estudo pela São Paulo Tech School.Com muito orgulho, sou um desevolvedor em
+                        aprendizagem com o objetivo e sonho em cada vez mais aprender e evoluir na área de
+                        desenvolvimento sendo mais específico na área de back-end. Desde que entrei na SPTECH descobri uma paixão de quebrar a cabeça em códigos de sistemas complexos
+                        ! Minha paixão por tecnologia surgiu-se desde de pequeno ao conquistar meu
+                        primeiro emprego de tecnologia/desenvolvedor como jovem aprendiz e essa paixão cresceu cada vez mais!
+                        A priori,
+                        tomei um susto do quão complexos são as coisas dentro de um sistema de uma empresa, mas com muito esforço vi como era uma área interessante e que gostaria disso para minha vida! </span>
                     <img class="img-primeira" src="assets/foto.jpg" alt="">
                 </div>
             </div>
-            <div class="sobre-mim">
-                <span class="title-historia">O porque do tema</span>
+            <div style="justify-content: flex-start;" class="sobre-mim">
+                <span class="title-historia">O motivo do tema</span>
+                <div class="sobremim-historia">
+                    <span class="span-historia"> Desde de pequeno fui uma criança muito amorosa quando se trata de animais, mas quando se falava de cachorros esse amor era ainda maior! Sempre tive o sonho de ter um cachorro mesmo com meus pais não querendo um. E depois de anos de insistência...
+                    Eles ainda não quiseram ter .
+                    Entretanto , a vida é algo misterioso e inusitado , depois de muito tempo  surgiu-se o Loki! Meu filho , irmão e melhor amigo! A vinda dele foi inusitada graças a uma amiga que me deu o Loki de presente de anivesário! Foi um dos melhores sentimentos da minha vida!No começo, minha família ficou apavorada com a vinda do novo membro, mas depois de algumas semanas não conseguiríamos viver sem ele! E a partir dái, o Loki só entrega felicidade e amor para nossa família!  </span>
+                    <div id="imagens_loki">
+                    </div>
+                </div>
+            </div>
+            <div style="justify-content: flex-start;" class="sobre-mim">
+                <span class="title-historia">Meus valores</span>
+                <div style="margin-top: 100px;" class="sobremim-historia">
+                    <div class="valores">                      
+                        <div style="width: 250px;height: 200px;" class="valor" src="" alt="">Empatia</div>                      
+                        <div style="width: 250px;height: 200px;" class="valor" src="" alt="">Responsabilidade</div>                      
+                        <div style="width: 250px;height: 200px;" class="valor" src="" alt="">Comunicação</div>                      
+                        <div style="width: 250px;height: 200px;" class="valor" src="" alt="">Proatividade</div>                      
+                    </div>
+
+                </div>
             </div>
         </div>
     </main>

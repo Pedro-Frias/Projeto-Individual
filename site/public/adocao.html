@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/adocao.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Document</title>
+</head>
+
+<body style="margin: 0px;" onload="buscarCachorros()">
+  <!-- NAVBAR  -->
+  <header style="width: 100%;" class="header-cadastro">
+    <div class="logo-area-nav">
+      <a href="index.html"><img src="assets/Logo-sem-fundo.png" alt=""></a>
+    </div>
+    <div style="line-height: 13vh;" class="inner-area-nav">
+      <ul class="list-nav">
+        <li><a class="link-nav" href="index.html"><span class="icon-nav"></span> Home <span
+              class="icon-nav2"></span></a>
+        </li>
+        <li><a class="link-nav" href="index.html#home-calculadora"> <span class="icon-nav"> </span>Simule <span
+              class="icon-nav3"></span></a></li>
+        <li><a class="link-nav" href="adocao.html"> <span class="icon-nav"> </span><b>Adote</b> <span
+              class="icon-nav2"></span></a></li>
+        <li><a class="link-nav" href="sobreMim.html"> <span class="icon-nav"></span>Sobre mim <span class="icon-nav4"></span></a>
+        </li>
+        <li><a class="link-nav" href="login.html"> <span class="icon-nav"></span>Login<span
+              class="icon-nav5"></span></a>
+        </li>
+        <li><a class="link-nav" href="cadastro.html"> <span class="icon-nav"></span>Cadastro<span
+              class="icon-nav6"></span></a></li>
+      </ul>
+      </nav>
+  </header>
+
+  <div class="tela-inicial">
+      <img style="width: 100vw;height: 100%;" src="assets/Adote um cão! (1).png" alt="">
+      <div class="texto-adocao">
+        <span class="title-adocao">Venha adotar seu futuro cão!</span><br>
+        <span class="title-adocao">Nós estamos ansiosos por sua vinda aqui! Não vejo a hora de conhecer minha nova casa!</span>
+        <a class="button-adocao" href="adocao.html#cachorros">Ver cães</a>
+      </div>
+  </div>
+  <div id="cachorros" class="cachorros-adocao">
+    <div class="title-cachorros-adocao">
+      <img class="icon-cards" src="assets/pawprint.png" alt="">
+      <span class="title-cards-porte">Veja os cães da LoyalLoki</span>
+      <img class="icon-cards" src="assets/pawprint.png" alt="">
+    </div>
+    <div class="polaroid" id="container">
+
+    </div>
+  </div>
+
+</body>
+
+</html>
+<script>
+  function buscarCachorros() {
+    fetch(`/doacao/listar`, {
+      method: "GET"
+    })
+      .then(res => {
+        res.json().then(listaCachorros => {
+
+          for (var i = 0; i < listaCachorros.length; i++) {
+            const usuario = listaCachorros[i];
+            if (i % 2 == 0) {
+              container.innerHTML += `
+        <figure>
+            <img  src="${usuario.imagem}" alt="my_photo">
+            <span style="color: gray;font-weight: bold;" class="text">${usuario.nomeCachorro}</span>
+            <span class="text">Raça:${usuario.racaCachorro}</span>
+            <span class="text">Dono:${usuario.nomeDono}</span>
+            <span class="text">Contato:${usuario.contato}</span>
+        </figure>`
+            } else {
+              container.innerHTML += `
+        <figure>
+            <img  src="${usuario.imagem}" alt="my_photo">
+            <span style="color:  rgb(220, 170, 108);font-weight: bold;" class="text">${usuario.nomeCachorro}</span>
+            <span class="text">Raça:${usuario.racaCachorro}</span>
+            <span class="text">Dono:${usuario.nomeDono}</span>
+            <span class="text">Contato:${usuario.contato}</span>
+        </figure>`
+            }
+
+          }
+
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+</script>

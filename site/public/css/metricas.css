@@ -1,18 +1,25 @@
 /* CORPO DA ÁREA DE MÉTRICAS E ANALITYCS  */
 
+body{
+    padding: 0px;
+    overflow-y: hidden;
+}
+
 .container-metrica{
-    height: 100%;
+    height: 100vh;
     display: flex;
-    gap: 40px;
+    gap: 32px;
     width: 93.5%;
+    background-image: url(../assets/1123963_OPSEG70.jpg) ;
     margin-left: 6.5%;
     flex-direction: column;
     align-items: center;
 }
 
+/* ÁREA DE TAREFAS TOTAIS */
 
 .tarefa-total{
-    background-color: bisque;
+    background-color: #b7edff;
     border: 1px black solid;
     border-radius: 10px;
     width: 70%;
@@ -27,10 +34,21 @@
     font-size: 53px;
 }
 
+/* ÁREA DO GRÁFICOS */
+
 .metricas-tarefa{
     display: flex;
     flex-direction: row;
     gap: 100px;
+}
+
+.title-atividades{
+    text-align: center;
+    padding: 2px;
+    font-size: 24px;
+    color: black;
+    background-color: #b7edff;
+    border-radius: 10px;
 }
 
 .grafico1{
@@ -39,9 +57,28 @@
 
 .grafico-chart{
     height: 310px;
+    margin-top: 3px;
 }
 
 canvas{
     height: 1px;
 
+}
+
+/* ÁREA DO RANKING */
+
+.ranking{
+    height: 345px;
+    width: 250px;
+    border-radius: 11px;
+    border: 1px black solid;
+    background-color: #b7edff;
+}
+
+.ranking-inner{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 10px 0px 0px 30px;
+    justify-content: center;
 }

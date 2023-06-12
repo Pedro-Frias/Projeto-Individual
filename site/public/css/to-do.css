@@ -7,6 +7,7 @@
     margin-left: 6.5%;
     padding: 40px;
     display: flex;
+    background-image: url(../assets/PlanodeFundoDashBook.jpg);
     align-items: center;
     /* justify-content: flex-start; */
     flex-direction: column;
@@ -41,6 +42,11 @@ form{
     flex-direction: column;
 }
 
+select{
+    border-radius: 5px;
+    border: 1px black solid;
+}
+
 .div-form label{
     display: flex;
     flex-direction: column;
@@ -49,6 +55,7 @@ form{
 .title-to-do{
     border: 1px black solid;
     width: 100% ;
+    font-size: 20px;
     height: 5vh;
     border-radius: 10px;
     text-align: center;
@@ -64,6 +71,7 @@ form{
     height: 25vh;
     border: 1px black solid;
     border-radius: 10px;
+    font-size: 20px;
 }
 
 .button{
@@ -100,7 +108,7 @@ form{
 
 .publicacao{
     border: 3px black solid;
-    background-color: rgb(253, 255, 122);
+    background-color: #f5f5ed;
     border-radius: 8px;
     gap: 10px;
     height: 280px;

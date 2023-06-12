@@ -18,10 +18,37 @@ function listarQtdTarefas(req, res){
         });
 }
 
-function grafico(req, res) {
+function fazerRanking(req, res) {
+
+    var idUsuario = req.params.idUsuario;
+
+    metricasModel.fazerRanking(idUsuario)
+        .then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    res.status(200).json(resultado);
+                    
+                } else {
+                    res.status(204).send("Nenhum resultado encontrado!");
+                }
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "Houve um erro ao buscar os a quantidade de votos: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function graficoAtividade(req, res) {
     var idUsuario = req.params.id;
 
-    metricasModel.grafico(idUsuario)
+    metricasModel.graficoAtividade(idUsuario)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -44,7 +71,10 @@ function grafico(req, res) {
         );
 }
 
+
+
 module.exports = {
     listarQtdTarefas,
-    grafico
+    fazerRanking,
+    graficoAtividade
 }

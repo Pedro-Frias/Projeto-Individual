@@ -31,14 +31,14 @@ body{
 
 .img-primeira{
     width: 500px;
-	height: 350px;
-	box-sizing: border-box;
-	border: 2px rgb(189, 22, 255) solid;
-	border-radius: 50%;
-	overflow: hidden;
-	box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
-	transform: translatey(0px);
-	animation: float 6s ease-in-out infinite;
+    height: 356px;
+    box-sizing: border-box;
+    border: 2px rgb(189, 22, 255) solid;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+    transform: translatey(0px);
+    animation: float 6s ease-in-out infinite;
 }
 .img-primeira:hover{
     background-image: url(../assets/sptech.jpeg);
@@ -60,7 +60,7 @@ body{
 }
 
 .title-sobremim{
-    font-size: 40px;
+    font-size: 50px;
     color: white;
 }
 .title-nome{
@@ -89,12 +89,37 @@ img{
 }
 
 .title-historia{
-    font-size: 40px;
+    font-size: 50px;
+    color: rgb(157, 70, 238);
 }
 
  
 .span-historia{
-    width: 50%;
-    font-size: 18px;
+    width: 45%;
+    font-size: 17px;
+    color: white;
     font-weight: bold;
+}
+
+.valores{
+    display: flex;
+    gap: 30px;
+}
+.valor{
+    width: 500px;
+    height: 356px;
+    box-sizing: border-box;
+    border: 2px rgb(189, 22, 255) solid;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+    background-image: url(/public/assets/CirculoGirando.webp);
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+    transform: translatey(0px);
+    animation: float 6s ease-in-out infinite;
 }

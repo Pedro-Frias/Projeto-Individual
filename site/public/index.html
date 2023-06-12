@@ -8,11 +8,14 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="assets/dog.png">
     <script defer src="js/script.js"></script>
+    <script src="js/calculadoraIdade.js"></script>
+    <script src="js/quiz.js"></script>
     <title>Loyal Loki</title>
 </head>
 
-<body>
+<body onload="mudarTitulo()">
 
+    <!-- <div class="semi-header"></div> -->
     <header class="header">
         <div class="logo-area-nav">
             <a href="index.html"><img src="assets/Logo-sem-fundo.png" alt=""></a>
@@ -24,9 +27,9 @@
                 </li>
                 <li><a class="link-nav" href="#home-calculadora"> <span class="icon-nav"> </span>Simule <span
                             class="icon-nav3"></span></a></li>
-                <li><a class="link-nav" href="#"> <span class="icon-nav"> </span>Adote <span
+                <li><a class="link-nav" href="adocao.html"> <span class="icon-nav"> </span>Adote <span
                             class="icon-nav2"></span></a></li>
-                <li><a class="link-nav" href="#"> <span class="icon-nav"></span>Sobre mim <span
+                <li><a class="link-nav" href="sobreMim.html"> <span class="icon-nav"></span>Sobre mim <span
                             class="icon-nav4"></span></a></li>
                 <li><a class="link-nav" href="login.html"> <span class="icon-nav"></span>Login<span
                             class="icon-nav5"></span></a>
@@ -54,14 +57,14 @@
                         alt="">
                     <span class="title-slide1"><b>Cachorro</b>, o melhor amigo do homem</span>
                     <span class="desc-slide1">Como algo que não fala,conhece tão bem nós seres humanos?</span>
-                    <a class="button-home-slide1" href="">Saiba mais</a>
+                    <a class="button-home-slide1" href="index.html#saiba-mais">Saiba mais</a>
 
                 </div>
                 <div class="slide">
                     <img class="img-home" src="assets/cao-bonito-com-fones-de-ouvido.jpg" alt="">
                     <span class="title-slide2">Cachorro companheiro</span>
                     <span class="desc-slide2">Aquele que topa todas ideias sem ao menos pensar</span>
-                    <a class="button-home-slide2 btnHome" href="">Saiba mais</a>
+                    <a class="button-home-slide2 btnHome" href="index.html#saiba-mais">Saiba mais</a>
                 </div>
                 <div class="slide">
 
@@ -88,14 +91,13 @@
         </div>
 
         <!-- ÁREA SAIBA MAIS
-            EM PLANEJAMENTO
         -->
-        <!--         <div id="typing-animation"></div> -->
-        <div class="saiba-mais">
+
+        <div id="saiba-mais" class="saiba-mais">
             <img class="imagem-saiba-mais" src="assets/pug.jpg" alt="">
 
             <div class="saiba-mais-texto">
-                <span class="title-saiba-mais">Por que um cachorro?</span>
+                <span id="frase_saiba_mais" class="title-saiba-mais"></span>
                 <p class="textos">O cachorro é considerado o amigo mais velho do homem e que segundo estudos, esta
                     parceria já se ultrapassou por <b>30.000 anos!</b> Os cães são conhecidos por serem companheiros
                     leais e afetuosos. Eles estão sempre presentes, prontos para oferecer amor, apoio emocional e
@@ -106,7 +108,7 @@
                 </p>
                 <p class="frase-efeito">
                     “O único amigo absoluto e altruísta que o homem pode ter neste mundo egoísta - aquele que nunca se
-                    mostra ingrato ou traiçoeiro - é seu cachorro.
+                    mostra ingrato ou traiçoeiro é seu cachorro.“
                 </p>
                 <p>George Graham</p>
             </div>
@@ -165,7 +167,8 @@
                 <div class="card-porte">
                     <div class="text-card">
                         <span class="title-porte">Porte Pequeno</span>
-                        <span class="descricao-card-porte">São extremamento ativos e brincalhões e sempre ficam ao seu lado sua altura fica
+                        <span class="descricao-card-porte">São extremamento ativos e brincalhões e sempre ficam ao seu
+                            lado sua altura fica
                             entre
                             30cm a 40cm e peso máximo de até 10kg</span>
                         <span class="raca-card"><b>Raças:</b>Dachshund, Pinscher, Poodle Toy, Lhasa Apso, Shih
@@ -176,7 +179,8 @@
                 <div class="card-porte">
                     <div class="text-card">
                         <span class="title-porte">Porte Medio</span>
-                        <span class="descricao-card-porte">São cachorros fiéis, protetores companheiros para qualquer ocasião que possuem altura
+                        <span class="descricao-card-porte">São cachorros fiéis, protetores companheiros para qualquer
+                            ocasião que possuem altura
                             máxima
                             de 50cm pesando média de 10kg a 25kg</span>
                         <span class="raca-card"><b>Raças:</b>Beagle, Border Collie, Bulldog Francês, Cocker
@@ -187,7 +191,8 @@
                 <div class="card-porte">
                     <div class="text-card">
                         <span class="title-porte">Porte Grande</span>
-                        <span class="descricao-card-porte">Grande não apenas no tamanho mas também coração, este tipo de cachorro é leal .Possuem altura entre 50cm
+                        <span class="descricao-card-porte">Grande não apenas no tamanho mas também coração, este tipo de
+                            cachorro é leal .Possuem altura entre 50cm
                             a 70cm
                             pesando em torno de 25kg a 40kg</span>
                         <span class="raca-card"><b>Raças:</b>Husky Siberiano ,Doberman, Golden Retriever, Labrador
@@ -198,7 +203,8 @@
                 <div class="card-porte">
                     <div class="text-card">
                         <span class="title-porte">Porte Gigante</span>
-                        <span class="descricao-card-porte">São cachorros gentis e que precisam de espaço para se sentirem confortáveis, possuem altura
+                        <span class="descricao-card-porte">São cachorros gentis e que precisam de espaço para se
+                            sentirem confortáveis, possuem altura
                             acima de 70cm e peso mínimo de 45kg</span>
                         <span class="raca-card"><b>Raças:</b>DogoArgentino ,Dogue Alemão, Mastiff, São Bernardo </span>
                     </div>
@@ -274,14 +280,193 @@
                 </div>
             </div>
         </div>
-        <!--         william.nicolau@sptech.school -->
-        <!-- https://pqina.nl/blog/upload-image-with-nodejs/ -->
-        <!-- https://s1.1zoom.me/big0/759/Dogs_White_background_Jack_Russell_terrier_Tongue_563497_1279x1024.jpg -->
+        <!-- ÁREA QUIZ -->
+        <div>
+
+            <div style="    margin-top: 66px;position: absolute;display: flex;width: 100%;justify-content: center;">
+                
+            <img class="icon-cards" src="assets/pawprint.png" alt="">
+            <h1>Que tipo de porte de cachorro é ideal para você</h1>
+            <img class="icon-cards" src="assets/pawprint.png" alt="">
+            
+        </div>
+        <form class="container-quiz" id="quizForm">
+    <div id="pergunta1" style="display: flex;" class="pergunta">
+      <h2>VOCÊ MORA EM:</h2>
+      <div style="display: flex;flex-direction: column-reverse  ;">
+          <input style="color: black;" type="radio" name="pergunta1" value="apartamento">Apartamento<br>
+          <input type="radio" name="pergunta1" value="casa">Casa<br>
+          <input type="radio" name="pergunta1" value="sobrado">Sobrado<br>
+        </div>
+        <button class="button-quiz" onclick="proximaQuestao()">Proxima Questão</button>
+    </div>
+
+    <div id="pergunta2" style="display: none;" class="pergunta">
+      <h2>COMO É SUA ROTINA DIÁRIA?</h2>
+      <div style="display: flex;flex-direction: column-reverse  ;">
+      <input  type="radio" name="pergunta2" value="tempoTodo">Trabalho/Estudo o tempo todo<br>
+      <input type="radio" name="pergunta2" value="comTempo">Trabalho/Estudo mas tenho tempo no meu dia<br>
+      <input type="radio" name="pergunta2" value="sobraTempo">Não trabalho/Estudo<br>
+    </div>
+      <button class="button-quiz" onclick="proximaQuestao()">Proxima Questão</button>
+    </div>
+
+    <div id="pergunta3" style="display: none;" class="pergunta">
+        <h2>Você liga para pelos espalhados em sua casa?</h2>
+        <div style="display: flex;flex-direction: column-reverse  ;">
+      <input style="background-color: black;" type="radio" name="pergunta3" value="sim">Sim<br>
+      <input type="radio" name="pergunta3" value="não">Não<br>
+    </div>
+      <button class="button-quiz" onclick="proximaQuestao()">Proxima Questão</button>
+    </div>
+
+    <div id="pergunta4" style="display: none;" class="pergunta">
+        <h2>Prefere cachorro mais calmos ou animados?</h2>
+        <div style="display: flex;flex-direction: column-reverse  ;">
+      <input type="radio" name="pergunta4" value="calmo">Cachorros calmos<br>
+      <input type="radio" name="pergunta4" value="animado">Cachorros animados<br>
+    </div>
+      <button class="button-quiz" onclick="proximaQuestao()">Proxima Questão</button>
+    </div>
+
+    <div id="pergunta5" style="display: none;" class="pergunta">
+      <h2>De 0 a 10 quanto você passearia com seu cachorro todos os dias</h2>
+      <input maxlength="10" min="0" type="text" name="pergunta5" id="nota"><br>
+      <button class="button-quiz" onclick="proximaQuestao()">Proxima Questão</button>
+    </div>
+    
+    <div id="pergunta6" style="display: none;gap: 0px;" class="pergunta">
+        
+        <h2>Você já teve algum cachorro?</h2>
+        <div style="display: flex;flex-direction: column-reverse">
+            <input type="radio" name="pergunta6" value="teveCachorro">Sim<br>
+            <input type="radio" name="pergunta6" value="naoTeveCachorro">Não<br>
+        </div>
+        <button class="button-quiz" type="submit">Ver resultado</button>
+        <span style="font-size: 20px;" id="resultado"></span>
+        <button class="button-quiz" onclick="proximaQuestao()">Reiniciar jogo</button>
+    </div>
+    <div>
+        <img style="height: 500px; width: 500px;margin-top: 18vh;" src="./assets/cachorroComOculos-removebg-preview.png" alt="">
+    </div>
+</form>
+
+</div>
+
+        <!-- RODAPÉ -->
+        <footer>
+            <div class="text-footer">
+                <a href="https://github.com/Pedro-Frias">GitHub</a>
+                <span>Projeto realizado por Pedro Henrique Frias Bertazzo </span>
+                <a href="https://www.linkedin.com/in/pedro-henrique-frias-bertazzo-7b504a18b/">Linkedin</a>
+            </div>
+            <img style="position: relative;height: 219px;" src="assets/rodape.jpeg" alt="">
+        </footer>
     </main>
 
 </body>
 
 </html>
+
+<script>
+    document.getElementById('quizForm').addEventListener('submit', function(e) {
+  e.preventDefault(); // Evita o comportamento de envio do formulÃ¡rio
+
+// Pontuações para cada opção de resposta
+const pontuacao = {
+  pequeno: 0,
+  medio: 0,
+  grande: 0
+};
+
+// Obtém as respostas selecionadas pelo usuário
+const respostas = {
+  pergunta1: document.querySelector('input[name="pergunta1"]:checked').value,
+  pergunta2: document.querySelector('input[name="pergunta2"]:checked').value,
+  pergunta3: document.querySelector('input[name="pergunta3"]:checked').value,
+  pergunta4: document.querySelector('input[name="pergunta4"]:checked').value,
+  pergunta6: document.querySelector('input[name="pergunta6"]:checked').value
+};
+
+// Calcula a pontuação com base nas respostas
+if (respostas.pergunta1 === 'apartamento') {
+  pontuacao.pequeno++;
+} else if (respostas.pergunta1 === 'casa') {
+  pontuacao.medio++;
+} else if (respostas.pergunta1 === 'sobrado') {
+  pontuacao.grande++;
+}
+
+if (respostas.pergunta2 === 'tempoTodo') {
+  pontuacao.pequeno++;
+} else if (respostas.pergunta2 === 'comTempo') {
+  pontuacao.medio++;
+  pontuacao.grande++;
+} else if (respostas.pergunta2 === 'sobraTempo') {
+  pontuacao.grande++;
+}
+
+if (respostas.pergunta3 === 'sim') {
+  pontuacao.pequeno++;
+  pontuacao.medio++;
+} else if (respostas.pergunta3 === 'não') {
+  pontuacao.grande++;
+}
+
+if (respostas.pergunta4 === 'calmo') {
+  pontuacao.pequeno++;
+} else if (respostas.pergunta4 === 'animado') {
+  pontuacao.medio++;
+  pontuacao.grande++;
+}
+
+if(nota.value > 0 && nota.value <= 3){
+  pontuacao.pequeno++;
+}else if(nota.value > 3 && nota.value <= 7 ){
+  pontuacao.medio++;
+}else{
+  pontuacao.grande++;
+}
+
+if (respostas.pergunta6 === 'teveCachorro') {
+  pontuacao.medio++;
+  pontuacao.grande++;
+} else if (respostas.pergunta6 === 'naoTeveCachorro') {
+  pontuacao.pequeno++;
+}
+
+// Determina o resultado com base nas pontuações
+let resultado;
+if (pontuacao.pequeno > pontuacao.medio && pontuacao.pequeno > pontuacao.grande) {
+  resultado = 'Um cachorro de porte pequeno seria ideal para você!';
+  console.log(pontuacao)
+} else if (pontuacao.medio > pontuacao.pequeno && pontuacao.medio > pontuacao.grande) {
+  resultado = 'Um cachorro de porte médio seria ideal para você!';
+  console.log(pontuacao)
+} else if (pontuacao.grande > pontuacao.medio && pontuacao.grande > pontuacao.pequeno) {
+  resultado = 'Um cachorro de porte grande seria ideal para você!';
+  console.log(pontuacao)
+}else if(pontuacao.grande == pontuacao.medio || pontuacao.grande == pontuacao.pequeno || pontuacao.medio == pontuacao.pequeno){
+  const numeroSorteado = parseInt((Math.random() * 3) + 1)
+  if(numeroSorteado == 1){
+    resultado = 'Um cachorro de porte pequeno seria ideal para você!';
+  console.log(pontuacao)
+  console.log(numeroSorteado)
+  }else if(numeroSorteado == 2){
+    resultado = 'Um cachorro de porte médio seria ideal para você!';
+  console.log(pontuacao)
+  console.log(numeroSorteado)
+  }else{
+    resultado = 'Um cachorro de porte grande seria ideal para você!';
+  console.log(pontuacao)
+  console.log(numeroSorteado) 
+  }
+}
+// Exibe o resultado na página
+document.getElementById('resultado').textContent = resultado;
+});
+
+</script>
 
 <!--azul: #86C5DA 
     laranja: #FFA07A
